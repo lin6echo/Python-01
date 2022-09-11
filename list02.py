@@ -12,3 +12,15 @@ print(mylist)
 item = mylist.pop()
 print(item)
 print(mylist)
+
+mylist = ["Ford", "Mercedes", "Toyota"]
+mylist.remove("Ford")
+print(mylist)
+
+mylist = ["Ford", "Mercedes", "Toyota"]
+mylist.clear()
+print(mylist)
+
+
+
+
