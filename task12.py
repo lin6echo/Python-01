@@ -16,10 +16,17 @@ weekday = "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "S
 
 éves_napok_nevei = []
 
-# for x in year:
+#for x in year:
 #      éves_napok_nevei.append(list(weekday))
 # print(éves_napok_nevei)
 # print(len(éves_napok_nevei))
 
+
+for i in valami,valaki,valahol,valakivel,valamikor,valamiért,valamivel,
+    if i == 0:
+        i += 1
 print(year)
+
+
+
 

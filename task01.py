@@ -1,7 +1,7 @@
 import calendar
 import datetime
 from sqlite3 import Timestamp
-import pandas as pd
+
 
 
 # x_date = datetime.date(2022, 1, 22)
