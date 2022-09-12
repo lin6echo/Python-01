@@ -1,5 +1,3 @@
-week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-
 January = list(range(1,32))
 February = list(range(1,29))
 March = list(range(1,32))
@@ -15,38 +13,19 @@ December = list(range(1,32))
 
 year = January + February + March + April + May + June + July + August + September + October + November + December
 
-#print(year)
-#print(len(year))
+numbers = [year]
+for i, number in enumerate(numbers):
+    #print('index={},value={}'.format(i,number))
+    print(numbers)
 
-alldays = []
-
-for x in year:
-       alldays.append(list(week))
-     
-# print(alldays)
-# print(len(alldays))
-
-d1 = dict()
+numbers = [year]
 i = 0
-for x in week:
-       if i == 7:
-              i = 0
-d1[x] = year[i]      
+for number in numbers:
+    print(numbers)
+    i = i + 1
 
-i += 1
-    
-print(d1)
-print(len(d1))
+d = dict()
+key = numbers
+dict['key']
 
-
-
-
-
-
-
-
-
-
-
-
-
+print

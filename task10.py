@@ -1,5 +1,3 @@
-week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-
 January = list(range(1,32))
 February = list(range(1,29))
 March = list(range(1,32))
@@ -14,39 +12,26 @@ November = list(range(1,31))
 December = list(range(1,32))
 
 year = January + February + March + April + May + June + July + August + September + October + November + December
+weekday = "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
 
-#print(year)
-#print(len(year))
-
-alldays = []
+éves_napok_nevei = []
 
 for x in year:
-       alldays.append(list(week))
-     
-# print(alldays)
-# print(len(alldays))
+     éves_napok_nevei.append(list(weekday))
+print(éves_napok_nevei)
+print(len(éves_napok_nevei))
 
-d1 = dict()
-i = 0
-for x in week:
-       if i == 7:
-              i = 0
-d1[x] = year[i]      
+éves_napok_számai = []
 
-i += 1
-    
-print(d1)
-print(len(d1))
+for x in year:
+    éves_napok_számai = year
+print(éves_napok_számai)
+print(len(éves_napok_számai))
 
 
+# List1 = year
+# List2 = éves_napok_nevei
 
 
-
-
-
-
-
-
-
-
-
+# d = {List1[n]: List2[n] for n in range(List1)}
+# print(d)
