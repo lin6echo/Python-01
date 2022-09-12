@@ -31,7 +31,5 @@ print(len(éves_napok_számai))
 key_list = éves_napok_számai
 value_list = éves_napok_nevei
 
-
-
 new_dic_lis = dict(zip(key_list, value_list))
-print("Convert lists into dict",new_dic_lis)
+print(new_dic_lis)
