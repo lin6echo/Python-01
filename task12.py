@@ -22,10 +22,7 @@ weekday = "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "S
 # print(len(éves_napok_nevei))
 
 
-for i in valami,valaki,valahol,valakivel,valamikor,valamiért,valamivel,
-    if i == 0:
-        i += 1
-print(year)
+
 
 
 
