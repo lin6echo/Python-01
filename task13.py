@@ -16,8 +16,13 @@ weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", 
 for x in weekdays:
     print(x)
 
-numbers = (year)
-i = 0
-for number in numbers:
+numbers = year
+for numbers in year:
+    
     print(numbers)
-    i = i + 1
+    
+    my_list = [10, 20, 30, 40]
+
+for index, val in enumerate(my_list, start=1):
+    print(index, val)
+    
