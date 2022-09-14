@@ -19,6 +19,7 @@ c = 366
 
 for x in range(1, c):
      print(x)
+     
 
 DAYS = 'Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday', 'Saturday', 'Sunday'
 
@@ -29,6 +30,3 @@ for x in n:
      d.append(list(DAYS))
 print(d)
 
-# for x in year:
-#      éves_napok_nevei.append(list(weekday))
-# print(éves_napok_nevei)

@@ -8,7 +8,7 @@
 
 # printing a number
 for i in range(0,10,2):
-    print(i, end=" ")
+    print(i)
 print()
   
 from itertools import chain
@@ -18,7 +18,7 @@ print("Concatenating the result")
 res = chain(range(15), range(10, 20, 2))
  
 for i in res:
-    print(i, end=" ")
+    print(i)
     
 # Accessing range() with an index value
 ele = range(10)[0]
