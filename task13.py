@@ -17,7 +17,15 @@ for x in weekdays:
     print(x)
 
 numbers = (year)
-i = 0
-for number in numbers:
-    print(numbers)
-    i = i + 1
+
+
+
+for number in year:
+    b = number
+    print(b)
+
+for number in weekdays:
+    a = number
+    print(a)
+    
+
