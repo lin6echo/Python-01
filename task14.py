@@ -2,15 +2,16 @@ def day_number():
      global c
      c = 365
      d = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-     e = []
+    
      i = 0 
      for x in range(0, c):
-          if i == 6: 
-               i = 0
-               i = i +1
+          while i == len(d):
+               print(d[i])
+               i += 1
                
-          e.append(d[x])
-          print(e)
+              
+          
+          print(x)
           
 day_number()
 
