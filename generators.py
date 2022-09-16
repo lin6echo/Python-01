@@ -22,4 +22,4 @@ def fibon(n):
         result.append(a)
         a, b = b, a + b
     return result
-    fibon(n)
+fibon(n=1)
