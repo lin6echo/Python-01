@@ -1,6 +1,6 @@
 def day_number():
     global c
-    c = 365
+    c = 366
     d = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
     e = []
     i = 0 
@@ -12,5 +12,6 @@ def day_number():
         e.append(d[i])
         i += 1
     print(e)
+    print(x)
           
 day_number()
