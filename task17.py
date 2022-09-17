@@ -10,12 +10,12 @@ def yearly_days_name():
         e.append(d[i])
 
         i += 1
-    print(e)
+    print(e.index(28))
     
 
 yearly_days_name()
 
-# January = list(range(1,32))
+January = list(range(1,32))
 # February = list(range(1,29))
 # March = list(range(1,32))
 # April = list(range(1,31))
@@ -28,18 +28,4 @@ yearly_days_name()
 # November = list(range(1,31))
 # December = list(range(1,32))
 
-January = 32
 
-e =[]
-
-i = 0
-for x in range(1, January):
-    if i == 7:
-       i = 0
-
-    e.append(d[i])
-    i += 1
-
-
-    print(e)
-    
