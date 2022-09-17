@@ -14,15 +14,7 @@ def day_number():
      i += 1
           
 day_number()
-
-
-
-# def day_name():
-#      d = ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
-#      for x in d:
-#           print(x)
-     
-# day_name()          
+         
 
 
 
