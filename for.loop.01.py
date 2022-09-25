@@ -8,7 +8,7 @@ for letter in word:
 	print (letter)
 
 
-for x in range(1, 9):
+for x in range(1, 5):
 	print(x)
 
 adj = ["red", "big", "tasty"]
