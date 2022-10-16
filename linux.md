@@ -433,7 +433,7 @@ The linux `truncate` command is often used to shring or extend the size of a fil
 
 Split file.txt into 300 lines per file and output childfileaa, childfileab, childfileac
 
- 
+`cat filename | wc -l` - how many lines have
 
 
 
