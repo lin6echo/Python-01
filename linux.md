@@ -435,6 +435,89 @@ Split file.txt into 300 lines per file and output childfileaa, childfileab, chil
 
 `cat filename | wc -l` - how many lines have
 
+---
+### Linux file editor
+- A text editor is a program which enables you to create and manipulate data (text) in a Linux file.
+- There are several standard text editors available on most Linux sytems:
+------- vi - Visual editor
+------- ed - Standard line editor
+------- ex - Extended line editor
+------- emacs - A full screen editor
+------- pico - Beginner's editor
+------- vim - Advance version of vi
+
+##### Introduction to vi editor
+- ###### vi supplies commands for:
+  - inserting and deleting text
+  - replacing text
+  - moving around the file
+  - finding and substitutings strings
+  - cutting and pasting text
+
+- ###### Most common keys:
+  - i - insert
+  - Esc - Escape out of any mode
+  - r - replace
+  - d - delete
+  - :q! - quit without saving
+  - :wq! - quit and save
+
+---
+### `sed` command
+- Replace a string in a file with a newstring
+- Find and delete a line
+- Remove empty lines
+- Remove the first or n lines in a file
+- To replace tabs with spaces
+- Show defined lines from a file
+- Substitute within vi editor
+- And much more ....
+
+example:
+- `sed 's/Kenny/Lenny/g' filename` - only change display not a file
+- `sed -i 's/Kenny/Lenny/g' filename` - change file
+- `sed 's/Costanza// filename` - only remove on the screen
+- `sed -i 's/Costanza// filename` - remove in the file
+- `sed '/Seinfeld/d filename` - delete line where is e.g. Seinfeld
+- `sed '/^$/d' filename` - delete empty lines only a screen
+- `sed -i '/^$/d' filename` - delete empty lines in the file
+- `sed '1d' filename` - delete the first line only a screen
+- `sed -i '1d' filename` - delete the first line in the file
+- `sed '1,2d' filename` - delete the first 2 line on the screeen
+- `sed -i '1,2d' filename` - delete the first 2 line in the file
+- `sed 's/\t/ /g' filename` - replace tab to space on the screen
+- `sed -i 's/\t/ /g' filename` - replace tab to space in the file
+- `sed 's/ /\t/g' filename` - replace space to tab on the screen
+- `sed -i 's/ /\t/g' filename` - replace space to tab in the file
+- `sed -n 12,18p filename` - show defined lines from a file
+- `sed 12,18d filename` - shows outside the specified lines
+- `sed G filename` - put under each line an empty line on the screen
+- `sed -i G filename` - put under each line an empty line in the file
+
+---
+### User Account Management
+commands:
+- `useradd`
+- `groupadd`
+- `userdel`
+- `groupdel`
+- `usermod`
+
+files:
+- /etc/passwd
+- /etc/group
+- /etc/shadow
+
+Example: `useradd -m superheroes -s /bin/bash -c "user description" -m -d /home/spiderman spiderman
+
+`useradd -m newusername`
+`useradd - g newusername`  - add new user a group
+`userpwv newusername`
+`userdel newusername`
+
+userupdate: `sudo usermod -a -G sudo newusername`
+
+
 
 
 
