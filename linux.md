@@ -512,12 +512,45 @@ Example: `useradd -m superheroes -s /bin/bash -c "user description" -m -d /home/
 
 `useradd -m newusername`
 `useradd - g newusername`  - add new user a group
-`userpwv newusername`
+`userpasswd newusername`
 `userdel newusername`
 
 userupdate: `sudo usermod -a -G sudo newusername`
 
+---
+### Switch Users and Sudo Access
 
+Commands
+- `su - username`
+- `sudo command`
+- `visudo`
 
+File
+- /etc/sudoers
+
+----
+### Monitor Users
+- `who`
+- `last`
+- `w`
+- `finger`
+- `id.`
+
+`last | awk '{print $1}' | sort | uniq` - only first column without duplicate
+
+---
+### Talking to Users
+- `users`
+- `wall`
+- `write`
+
+---
+### Linux Account Authentication
+- Types of Accounts
+  - Local accounts
+  - Domain/Directory accounts
+
+---
+72
 
 
