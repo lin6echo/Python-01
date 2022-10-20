@@ -551,6 +551,77 @@ File
   - Domain/Directory accounts
 
 ---
-72
+### System Utility Commands
+- `date`
+- `uptime`
+- `hostname`
+- `uname`
+- `which`
+- `cal`
+- `bc`
+
+---
+### Processes and Jobs
+- Application = Service
+- Script
+- Process
+- Daemon
+- Threads
+- Job
+
+##### Process/Services Commands
+- `systemctl` or `service`
+- `ps`
+- `top`
+- `kill`
+- `crontab`
+- `at`
+
+---
+### Process Management
+- Background = CTRL-z, jobs and `bg`
+- Foreground = `fg`
+- Run process even after exit = `nohup process &`
+  - OR = `nohup porcess > /dev/null 2>&1 &`
+- Kill a process by name = `pkill`
+- Process priority = `nice` (e.g. `nice -n 5 process`)
+- Process monitoring = `top`
+- List process = `ps`
+
+---
+### System Monitoring
+- `top`
+- `df`
+- `dmesg`
+- `iostat 1`
+- `netstat`
+- `free`
+- `cat /proc/cpuinfo`
+- `cat /proc/meminfo`
+
+---
+78
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
