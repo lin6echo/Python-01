@@ -600,7 +600,24 @@ File
 - `cat /proc/meminfo`
 
 ---
-78
+### Log Monitoring
+Log Directory = /var/log
+- boot
+- chronyd = NTP
+- cron
+- maillog
+- secure
+- messages
+- httpd
+---
+### System Maintenance Commands
+- shutdown
+- init 0-6
+- reboot
+- halt
+---
+### Changing System Hostname
+- `hostnamectl - set-hostname newhostname`
 
 
 
