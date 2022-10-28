@@ -618,7 +618,13 @@ Log Directory = /var/log
 ---
 ### Changing System Hostname
 - `hostnamectl - set-hostname newhostname`
-
+---
+### Finding System Information
+- `cat` /etc/redhat-release
+- `uname -a`
+- `dmidecode`
+---
+82
 
 
 
