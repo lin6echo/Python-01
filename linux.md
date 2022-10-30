@@ -631,6 +631,21 @@ Log Directory = /var/log
 - CTRL-z - suspend a command
 - CTRL-d - exit from an interactive program (signals end of data)
 ---
+### Terminal Commands
+- `clear` - clear your screen
+- `exit` - exit out of the shell, terminal or a user session
+- `script` - The script command stores terminal activities in a log file that can be named by a user, when a name is not provided by a user, the default filename, typescript is used 
+---
+### SOS report
+- What is SOS report?
+  - Collect and package diagnostic and support data
+- Package name
+  - `sos-version`
+- Command
+  - `sos report`
+---
+
+
 
 
 
