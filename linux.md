@@ -624,7 +624,13 @@ Log Directory = /var/log
 - `uname -a`
 - `dmidecode`
 ---
-82
+### Terminal Control Keys
+
+- CTRL-u - erase everything you've typed on the command line
+- CTRL-c - stop/kill a command
+- CTRL-z - suspend a command
+- CTRL-d - exit from an interactive program (signals end of data)
+---
 
 
 
