@@ -644,6 +644,34 @@ Log Directory = /var/log
 - Command
   - `sos report`
 ---
+### Environment variables
+What are environment variables?
+- An environment variable is a dynamic-named value that can effect the way running processes will behave on a computer. They are part of the environment in which a process runs.
+- In simple words: set of defined rules and values to build an environment
+
+
+ To view all environment variables
+- `printevn` OR `env`
+
+ To view ONE environment variable
+ - echo $SHELL
+
+ To set the environment variables
+ - `export TEST=1`
+ - `echo $TEST`
+
+ To set environment variable permanently
+ - `vi .bashrc`
+ - `TEST='123'`
+ - `export TEST`
+
+ To set global environment permanently
+ - `vi /etc/profile` OR `vi /etc/bashrc`
+ - `TEST='123'`
+ - `export TEST`
+---
+88
+
 
 
 
