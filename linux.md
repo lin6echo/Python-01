@@ -670,7 +670,23 @@ What are environment variables?
  - `TEST='123'`
  - `export TEST`
 ---
-88
+### Linux kernel
+What is a Kernel?
+- Interface between hardware and software
+---
+### Introduction to Shell
+What is Shell?
+- Its like a container
+- Interface between Users and Kernel/OS
+- CLI is a Shell
+
+Find your Shell
+- `echo $0`
+- Available Shells `cat /etc/shells`
+- Your Shells? /etc/passwd
+  ---
+  90
+
 
 
 
