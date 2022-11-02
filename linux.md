@@ -785,30 +785,32 @@ What is a Shell script?
 
 ---
 
-93
+<h3>Input and Output</h3>
 
+Create script to take input from the user
+    - `read`
+    - `echo`
 
+---
 
+<h3>if-then scripts</h3>
 
+- If then statement
 
+    - <b>If this happens = do this</b>
+    - <b>Otherwise =  do that</b>
 
+---
 
+<h3>For Loop Scripts</h3>
 
+- For loops
 
+    - <b>Keep running until specified number of variable</b>
+    - <b>e.g: variable=10 then run the script 10 times</b>
+    OR
+    - <b> variable=green,blue,red (then run the script 3 times for each colors)</b>
 
+---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+96
