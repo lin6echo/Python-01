@@ -810,6 +810,125 @@ Create script to take input from the user
     - <b>e.g: variable=10 then run the script 10 times</b>
     OR
     - <b> variable=green,blue,red (then run the script 3 times for each colors)</b>
+--- 
+
+\#!/bin/bash
+
+\# For loop to create 5 files named 1-5
+
+for i in {1..5}
+do
+	touch $i
+done
+
+---
+
+\#!/bin/bash
+
+\# Example of defining variables
+
+a=Csaba
+b=Bajzáth
+c="Linux class"
+
+echo "My first name is \$a"\
+echo "My surname is \$b"\
+echo "My class name is $c" 
+
+---
+
+\#!/bin/bash
+
+\# Simple for loop output
+
+for i in 1 2 3 4 5
+do
+echo "Welcome $i times"
+done
+
+---
+
+\#!/bin/bash
+
+\# Check the variable
+
+count=100
+if [ $count -eq 100 ]
+then
+  echo Count is 100
+else
+  echo Count is not 100
+fi
+
+---
+
+\#!/bin/bash
+\# Author
+\# Date
+\# Desc
+
+echo Hello, my name Csaba Bajzáth
+echo
+echo What is your name?
+read namecontainer
+echo
+echo Hello $namecontainer
+echo
+
+---
+
+\#!/bin/bash
+
+\# List all users one by one from /etc/passwd file
+
+i=1
+for username in \``awk -F: '{print $1}' /etc/passwd`\`
+do
+	echo "Username $((i++)) : \$username"
+done
+
+---
+
+\#!/bin/bash
+
+\# Specify days in for loop
+
+i=1
+for day in Mon Tue Wed Thu Fri
+do
+	echo "weekday \$((i++)) : $day"
+done
+
+---
+
+\#!/bin/bash
+
+\# Check if a variable value is met
+
+a=\``date | awk '{print $1}'`\`
+
+if [ "$a" == Mon ]
+
+	then
+	echo Today is $a
+	else
+	echo Today is not Monday
+fi
+
+---
+
+\#!/bin/bash
+
+\# Check if a file veronica exist
+
+clear
+if [ -e /home/lin6echo/error.txt ]
+
+		then
+		echo "File exist"
+		else
+		echo "File does not exist"
+fi
 
 ---
 
