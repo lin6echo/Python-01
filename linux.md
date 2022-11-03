@@ -919,7 +919,7 @@ fi
 
 \#!/bin/bash
 
-\# Check if a file veronica exist
+\# Check if a file exist
 
 clear
 if [ -e /home/lin6echo/error.txt ]
@@ -932,4 +932,57 @@ fi
 
 ---
 
-96
+<h3>do-while scripts</h3>
+
+do while
+
+  - The while statement continually executes a block of statements while a particular condition is true or met
+  - e.g: Run script until 2pm
+  <br>
+
+      while  [ condition ]
+      do
+
+               command1
+               command2
+               commandN
+      done
+----
+
+\#!/bin/bash
+
+\# Script to run for a number of seconds
+
+count=0
+num=10
+while [ $count -lt 10 ]
+do 
+
+	echo
+	echo $num seconds left to stop this process $1
+	echo
+	sleep 1
+num=\``expr $num - 1`\`
+count=\``expr $count + 1`\`
+done
+echo
+echo $1 process is stopped!!!
+echo
+
+---
+
+<pre>#!/bin/bash
+
+# Script to run for a number of times
+
+c=1
+while [ $c -le 5 ]
+do
+	echo &quot;Welcome $c times&quot;
+	(( c++ ))
+done
+</pre>
+
+---
+
+97
