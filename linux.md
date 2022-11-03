@@ -985,4 +985,15 @@ done
 
 ---
 
-97
+<h3>Case statement script</h3>
+
+Case
+  - If option a is selected = do this e.g: run "top" command
+  - If option b is selected = do this e.g: run "pwd" command
+  - If option c is selected = do this e.g: run "df -h" command
+
+---
+
+98
+
+
