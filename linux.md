@@ -848,9 +848,9 @@ done
 
 ---
 
-\#!/bin/bash
+<pre>#!/bin/bash
 
-\# Check the variable
+# Check the variable
 
 count=100
 if [ $count -eq 100 ]
@@ -859,6 +859,7 @@ then
 else
   echo Count is not 100
 fi
+</pre>
 
 ---
 
@@ -877,58 +878,61 @@ echo
 
 ---
 
-\#!/bin/bash
+<pre>#!/bin/bash
 
-\# List all users one by one from /etc/passwd file
+# List all users one by one from /etc/passwd file
 
 i=1
-for username in \``awk -F: '{print $1}' /etc/passwd`\`
+for username in `awk -F: &apos;{print $1}&apos; /etc/passwd`
 do
-	echo "Username $((i++)) : \$username"
+	echo &quot;Username $((i++)) : $username&quot;
 done
+</pre>
 
 ---
 
-\#!/bin/bash
+<pre>#!/bin/bash
 
-\# Specify days in for loop
+# Specify days in for loop
 
 i=1
 for day in Mon Tue Wed Thu Fri
 do
-	echo "weekday \$((i++)) : $day"
+	echo &quot;weekday $((i++)) : $day&quot;
 done
-
+</pre>
 ---
 
-\#!/bin/bash
+<pre>#!/bin/bash
 
-\# Check if a variable value is met
+# Check if a variable value is met
 
-a=\``date | awk '{print $1}'`\`
+a=`date | awk &apos;{print $1}&apos;`
 
-if [ "$a" == Mon ]
+if [ &quot;$a&quot; == Mon ]
 
 	then
 	echo Today is $a
 	else
 	echo Today is not Monday
 fi
+</pre>
 
 ---
 
-\#!/bin/bash
+<pre>#!/bin/bash
 
-\# Check if a file exist
+# Check if a file file exist
 
 clear
 if [ -e /home/lin6echo/error.txt ]
 
 		then
-		echo "File exist"
+		echo &quot;File exist&quot;
 		else
-		echo "File does not exist"
+		echo &quot;File does not exist&quot;
 fi
+</pre>
 
 ---
 
@@ -949,25 +953,25 @@ do while
       done
 ----
 
-\#!/bin/bash
+<pre>#!/bin/bash
 
-\# Script to run for a number of seconds
+# Script to run for a number of seconds
 
 count=0
 num=10
 while [ $count -lt 10 ]
-do 
-
+do
 	echo
 	echo $num seconds left to stop this process $1
 	echo
 	sleep 1
-num=\``expr $num - 1`\`
-count=\``expr $count + 1`\`
+num=`expr $num - 1`
+count=`expr $count + 1`
 done
 echo
 echo $1 process is stopped!!!
 echo
+</pre>
 
 ---
 
@@ -985,6 +989,32 @@ done
 
 ---
 
+<pre>#!/bin/bash
+
+echo
+echo Please chose one of the options below
+echo
+echo &apos;a = Display Date and Time&apos;
+echo &apos;b = List file and directories&apos;
+echo &apos;c = List users logged in&apos;
+echo &apos;d = Check System uptime&apos;
+echo
+
+	read choices
+
+	case $choices in
+
+a) date;;
+b) ls;;
+c) who;;
+d) uptime;;
+*) echo Invalid choice - Bye.
+	
+	esac
+</pre>
+
+---
+
 <h3>Case statement script</h3>
 
 Case
@@ -994,6 +1024,10 @@ Case
 
 ---
 
-98
+<h3>Check Other Servers Connectivity</h3>
+
+- A script to check the status of remote hosts
+
+08:30
 
 
