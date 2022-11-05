@@ -1028,6 +1028,51 @@ Case
 
 - A script to check the status of remote hosts
 
-08:30
+<pre>#!/bin/bash
+# Author: Csaba Bajzáth
+# Date: 04/11/2022
+# Description: This script will ping a remote host and notify
 
+ping -c1 192.168.1.1
+	if [ $? -eq 0 ]
+	then
+	echo OK
+	else
+	echo NOT OK
+	fi
+</pre>
+---
+<h3>Aliases</h3>
 
+Aliases is a very popular command that is used to cut down lengthy and repetitive commands
+
+- `alias ls = "ls -al"`
+- `alias pl = "pwd; ls"`
+- `alias tell = "whoami; hostname; pwd"`
+- `alias dir = "ls -l | grep ^d"`
+- `alias lmar = "ls -l | grep Mar"`
+- `alias wpa = "chmod a+w"`
+- `alias d = "df -h | awk '{print \$6}' | cut -cl-4"`
+
+---
+
+<h3>Creating User or Global Alieses</h3>
+
+User = Applies only to a specific user profile
+Global = Applies to everyone who has account on the system
+
+User = /home/user/.bashrc
+Global = /etc/bashrc
+
+  `alias hh="hostname"
+
+---
+<h3>Shell History</h3>
+
+All commands are recorded
+
+Command: "history"
+
+----
+
+104
