@@ -1075,4 +1075,33 @@ Command: "history"
 
 ----
 
-104
+<h3>Download Files or App</h3>
+
+linux = `wget`
+
+---
+
+<h3>curl and ping commands</h3>
+
+linux = `curl`
+linux = `ping`
+
+---
+
+<h3>System upgrade - Patch Managment</h3>
+
+Two types of upgrades
+- Major version = 5,6,7
+- Minor version = 7.3 to 7.4
+
+Minor version = `apt update`
+
+example: `apt update -y`
+
+upgrade - delete packages
+update - preserve old packages
+
+---
+113
+
+
