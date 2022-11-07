@@ -1102,6 +1102,29 @@ upgrade - delete packages
 update - preserve old packages
 
 ---
-113
+<h3>Advanced Package Manager</h3>
+
+`rpm -hiv link.rpm` - install package
+`rpm -qa | grep installed package` - check
+`rpm -qi installed package` - information
+`rpm -e installed package` - delete package
+`rpm -qc installed package` - shows configuration files
+
+---
+<h3>Rollback Updates and Patches</h3>
+
+Rollback a package or patch
+- `apt install \<package name>`
+- `apt history undo \<ID>`
+
+Rollback an update
+
+`apt update` - Update will preserve them
+`apt upgrade` - Upgrade will delete obsolete packages
+`apt history undo \<ID>`
+
+---
+116
+
 
 
