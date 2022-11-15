@@ -114,5 +114,38 @@ One systemd command (systemctl) is used for most basic tasks. While we have not 
 
     In most cases, the .service can be omitted. There are many technical differences with older methods that lie beyond the scope of our discussion.  
 
+<h3>Linux Filesystems</h3>
 
 
+
+Think of a refrigerator that has multiple shelves that can be used for storing various items. These shelves help you organize the grocery items by shape, size, type, etc. The same concept applies to a filesystem, which is the embodiment of a method of storing and organizing arbitrary collections of data in a human-usable form.
+
+Different types of filesystems supported by Linux:
+
+- Conventional disk filesystems: ext3, ext4, XFS, Btrfs, JFS, NTFS, vfat, exfat, etc.
+- Flash storage filesystems: ubifs, jffs2, yaffs, etc.
+- Database filesystems
+- Special purpose filesystems: procfs, sysfs, tmpfs, squashfs, debugfs, fuse, etc.
+
+This section will describe the standard filesystem layout shared by most Linux distributions.
+
+
+<h3>Partitions and Filesystems</h3>
+
+A partition is a physically contiguous section of a disk, or what appears to be so in some advanced setups.
+
+A filesystem is a method of storing/finding files on a hard disk (usually in a partition). 
+
+One can think of a partition as a container in which a filesystem resides, although in some circumstances, a filesystem can span more than one partition if one uses symbolic links, which we will discuss much later.
+
+A comparison between filesystems in Windows and Linux is given in the accompanying table:
+
+<h3>The Filesystem Hierarchy Standard</h3>
+
+Linux systems store their important files according to a standard layout called the Filesystem Hierarchy Standard (FHS), which has long been maintained by the Linux Foundation. For more information, take a look at the following document: "Filesystem Hierarchy Standard" created by LSB Workgroup. Having a standard is designed to ensure that users, administrators, and developers can move between distributions without having to re-learn how the system is organized.
+
+Linux uses the ‘/’ character to separate paths (unlike Windows, which uses ‘\’), and does not have drive letters. Multiple drives and/or partitions are mounted as directories in the single filesystem. Removable media such as USB drives and CDs and DVDs will show up as mounted at /run/media/yourusername/disklabel for recent Linux systems, or under /media for older distributions. For example, if your username is student a USB pen drive labeled FEDORA might end up being found at /run/media/student/FEDORA, and a file README.txt on that disc would be at /run/media/student/FEDORA/README.txt.
+
+<h3>More About the Filesystem Hierarchy Standard</h3>
+
+All Linux filesystem names are case-sensitive, so /boot, /Boot, and /BOOT represent three different directories (or folders). Many distributions distinguish between core utilities needed for proper system operation and other programs, and place the latter in directories under /usr (think user). To get a sense for how the other programs are organized, find the /usr directory in the diagram from the previous page and compare the subdirectories with those that exist directly under the system root directory (/).
