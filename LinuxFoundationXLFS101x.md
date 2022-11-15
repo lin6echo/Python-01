@@ -112,7 +112,7 @@ One systemd command (systemctl) is used for most basic tasks. While we have not 
 - Enabling or disabling a system service from starting up at system boot:
             `$ sudo systemctl enable|disable httpd.service`
 
-In most cases, the .service can be omitted. There are many technical differences with older methods that lie beyond the scope of our discussion.  
+    In most cases, the .service can be omitted. There are many technical differences with older methods that lie beyond the scope of our discussion.  
 
 
 
