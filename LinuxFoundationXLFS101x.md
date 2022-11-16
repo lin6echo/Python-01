@@ -20,13 +20,11 @@ Many commercial distributors, including Red Hat, Ubuntu, SUSE, and Oracle, provi
 
 <h3>The Boot Process</h3>
 
+The Linux boot process is the procedure for initializing the system. It consists of everything that happens from when the computer power is first switched on until the user interface is fully operational.
 
+Having a good understanding of the steps in the boot process may help you with troubleshooting problems, as well as with tailoring the computer's performance to your needs.
 
-The Linux boot process is the procedure for initializing the system. It consists of everything that happens from when the computer power is first switched on until the user interface is fully operational. 
-
-Having a good understanding of the steps in the boot process may help you with troubleshooting problems, as well as with tailoring the computer's performance to your needs. 
-
-On the other hand, the boot process can be rather technical, and you can start using Linux without knowing all the details. 
+On the other hand, the boot process can be rather technical, and you can start using Linux without knowing all the details.
 
 <b>NOTE</b>: <i>You may want to come back and study this section later, if you want to first get a good feel for how to use a Linux system.</i>
 
@@ -116,8 +114,6 @@ One systemd command (systemctl) is used for most basic tasks. While we have not 
 
 <h3>Linux Filesystems</h3>
 
-
-
 Think of a refrigerator that has multiple shelves that can be used for storing various items. These shelves help you organize the grocery items by shape, size, type, etc. The same concept applies to a filesystem, which is the embodiment of a method of storing and organizing arbitrary collections of data in a human-usable form.
 
 Different types of filesystems supported by Linux:
@@ -129,12 +125,11 @@ Different types of filesystems supported by Linux:
 
 This section will describe the standard filesystem layout shared by most Linux distributions.
 
-
 <h3>Partitions and Filesystems</h3>
 
 A partition is a physically contiguous section of a disk, or what appears to be so in some advanced setups.
 
-A filesystem is a method of storing/finding files on a hard disk (usually in a partition). 
+A filesystem is a method of storing/finding files on a hard disk (usually in a partition).
 
 One can think of a partition as a container in which a filesystem resides, although in some circumstances, a filesystem can span more than one partition if one uses symbolic links, which we will discuss much later.
 
@@ -149,3 +144,106 @@ Linux uses the ‘/’ character to separate paths (unlike Windows, which uses �
 <h3>More About the Filesystem Hierarchy Standard</h3>
 
 All Linux filesystem names are case-sensitive, so /boot, /Boot, and /BOOT represent three different directories (or folders). Many distributions distinguish between core utilities needed for proper system operation and other programs, and place the latter in directories under /usr (think user). To get a sense for how the other programs are organized, find the /usr directory in the diagram from the previous page and compare the subdirectories with those that exist directly under the system root directory (/).
+
+<h3>Questions to Ask When Choosing a Distribution</h3>
+
+Some questions worth thinking about before deciding on a distribution include:
+
+- What is the main function of the system (server or desktop)?
+- What types of packages are important to the organization? For example, web server, word processing, etc.
+- How much hard disk space is required and how much is available? For example, when installing Linux on an embedded device, space is usually constrained.
+- How often are packages updated?
+- How long is the support cycle for each release? For example, LTS releases have long-term support.
+- Do you need kernel customization from the vendor or a third party?
+- What hardware are you running on? For example, it might be X86, ARM, PPC, etc.
+- Do you need long-term stability? Can you accept (or need) a more volatile cutting edge system running the latest software?
+
+<h3>Linux Installation: Planning</h3>
+
+The partition layout needs to be decided at the time of installation; it can be difficult to change later. While Linux systems handle multiple partitions by mounting them at specific points in the filesystem, and you can always modify the design later, it is always easier to try and get it right to begin with.
+
+Nearly all installers provide a reasonable default layout, with either all space dedicated to normal files on one big partition and a smaller swap partition, or with separate partitions for some space-sensitive areas like /home and /var. You may need to override the defaults and do something different if you have special needs, or if you want to use more than one disk.
+
+<h3>Linux Installation: Software Choices</h3>
+
+All installations include the bare minimum software for running a Linux distribution.
+
+Most installers also provide options for adding categories of software. Common applications (such as the Firefox web browser and LibreOffice office suite), developer tools (like the vi and emacs text editors, which we will explore later in this course), and other popular services, (such as the Apache web server tools or MySQL database) are usually included. In addition, for any system with a graphical desktop, a chosen desktop (such as GNOME or KDE) is installed by default.
+
+All installers set up some initial security features on the new system. One basic step consists of setting the password for the superuser (root) and setting up an initial user. In some cases (such as Ubuntu), only an initial user is set up; direct root login is not configured and root access requires logging in first as a normal user and then using sudo, as we will describe later. Some distributions will also install more advanced security frameworks, such as SELinux or AppArmor. For example, all Red Hat-based systems including Fedora and CentOS always use SELinux by default, and Ubuntu comes with AppArmor up and running.
+
+<h3>Linux Installation: Install Source</h3>
+
+Like other operating systems, Linux distributions are provided on removable media such as USB drives and CDs or DVDs. Most Linux distributions also support booting a small image and downloading the rest of the system over the network. These small images are usable on media, or as network boot images, in which case it is possible to perform an install without using any local media.
+
+Many installers can do an installation completely automatically, using a configuration file to specify installation options. This file is called a Kickstart file for Red Hat-based systems, an AutoYAST profile for SUSE-based systems, and a Preseed file for Debian-based systems.
+
+Each distribution provides its own documentation and tools for creating and managing these files.
+
+<h3>Linux Installation: The Process</h3>
+
+The actual installation process is pretty similar for all distributions.
+
+After booting from the installation media, the installer starts and asks questions about how the system should be set up. These questions are skipped if an automatic installation file is provided. Then, the installation is performed.
+
+Finally, the computer reboots into the newly-installed system. On some distributions, additional questions are asked after the system reboots.
+
+Most installers have the option of downloading and installing updates as part of the installation process; this requires Internet access. Otherwise, the system uses its normal update mechanism to retrieve those updates after the installation is done.
+
+<b>NOTE</b>: <i>We will be demonstrating the installation process in each of the three Linux distribution families we cover in this course. You can view a demonstration for the distribution type of your choice.</i>
+
+<h3>Linux Installation: The Warning</h3>
+
+<b>IMPORTANT!</b>
+
+The demonstrations show how to install Linux directly on your machine, erasing everything that was there. While the demonstrations will not alter your computer, following these procedures in real life will erase all current data.
+
+The Linux Foundation has a document: "Preparing Your Computer for Linux Training" (see below) that describes alternate methods of installing Linux without over-writing existing data. You may want to consult it, if you need to preserve the information on your hard disk.
+
+These alternate methods are:
+
+1. Re-partitioning your hard disk to free up enough room to permit dual boot (side-by-side) installation of Linux, along with your present operating system.
+2. Using a host machine hypervisor program (such as VMWare's products or Oracle Virtual Box) to install a client Linux Virtual Machine.
+3. Booting off of and using a Live CD or USB stick and not writing to the hard disk at all.
+
+The first method is sometimes complicated and should be done when your confidence is high and you understand the steps involved. The second and third methods are quite safe and make it difficult to damage your system.
+
+<h3>Chapter Summary</h3>
+
+You have completed Chapter 3. Let’s summarize the key concepts covered:
+
+- A partition is a logical part of the disk.
+- A filesystem is a method of storing/finding files on a hard disk.
+- By dividing the hard disk into partitions, data can be grouped and separated as needed. When a failure or mistake occurs, only the data in the affected partition will be damaged, while the data on the other partitions will likely survive.
+- The boot process has multiple steps, starting with BIOS, which triggers the boot loader to start up the Linux kernel. From there, the initramfs filesystem is invoked, which triggers the init program to complete the startup process.
+- Determining the appropriate distribution to deploy requires that you match your specific system needs to the capabilities of the different distributions.
+
+<h3>Learning Objectives</h3>
+
+By the end of this chapter, you should be able to:
+
+- Manage graphical interface sessions.
+- Perform basic operations using the graphical interface.
+- Change the graphical desktop to suit your needs.
+
+<h3>Graphical Desktop</h3>
+
+You can use either a Command Line Interface (CLI) or a Graphical User Interface (GUI) when using Linux. To work at the CLI, you have to remember which programs and commands are used to perform tasks, and how to quickly and accurately obtain more information about their use and options. On the other hand, using the GUI is often quick and easy. It allows you to interact with your system through graphical icons and screens. For repetitive tasks, the CLI is often more efficient, while the GUI is easier to navigate if you do not remember all the details or do something only rarely. 
+
+We will learn how to manage sessions using the GUI for the three Linux distribution families that we cover the most in this course: Red Hat (CentOS, Fedora), SUSE (openSUSE), and Debian (Ubuntu, Mint). Since we are using the GNOME-based variant of openSUSE rather than the KDE-based one, all are actually quite similar. If you are using KDE (or other Linux desktops such as XFCE), your experience will vary somewhat from what is shown, but not in any intrinsically difficult way, as user interfaces have converged to certain well-known behaviors on modern operating systems. In subsequent sections of this course we will concentrate in great detail on the command line interface, which is pretty much the same on all distributions.
+
+<h3>X Window System</h3>
+
+Generally, in a Linux desktop system, the X Window System is loaded as one of the final steps in the boot process. It is often just called X.
+
+A service called the Display Manager keeps track of the displays being provided and loads the X server (so-called, because it provides graphical services to applications, sometimes called X clients). The display manager also handles graphical logins and starts the appropriate desktop environment after a user logs in.
+
+X is rather old software; it dates back to the mid 1980s and, as such, has certain deficiencies on modern systems (for example, with security), as it has been stretched rather far from its original purposes. A newer system, known as Wayland, is gradually superseding it and is the default display system for Fedora, RHEL 8, and other recent distributions.  For the most part, it looks just like X to the user, although under the hood it is quite different.
+
+<h3>More About X</h3>
+
+A desktop environment consists of a session manager, which starts and maintains the components of the graphical session, and the window manager, which controls the placement and movement of windows, window title-bars, and controls.
+
+Although these can be mixed, generally a set of utilities, session manager, and window manager are used together as a unit, and together provide a seamless desktop environment.
+
+If the display manager is not started by default in the default runlevel, you can start the graphical desktop different way, after logging on to a text-mode console, by running startx from the command line. Or, you can start the display manager (gdm, lightdm, kdm, xdm, etc.) manually from the command line. This differs from running startx as the display managers will project a sign in screen. We discuss them next.
