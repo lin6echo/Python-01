@@ -370,3 +370,165 @@ Click the link below to view a solution to the Lab exercise.
 ### Logging In and Out
 
 The next screen shows a demonstration for logging in and out on the major Linux distribution families we concentrate on in this course. Note that evolution has brought us to a stage where it little matters which distribution you choose, as they are all rather similar.
+
+### Locking the Screen
+
+It is often a good idea to lock your screen to prevent other people from accessing your session while you are away from your computer.
+
+<i><b>NOTE</b>: This does not suspend the computer; all your applications and processes continue to run while the screen is locked.</i>
+
+There are two ways to lock your screen:
+
+- Using the graphical interface
+Clicking in the upper-right corner of the desktop, and then clicking on the lock icon.
+- Using the keyboard shortcut SUPER-L 
+(The SUPER key is also known as the Windows key). 
+
+The keyboard shortcut for locking the screen can be modified by altering keyboard settings, the exact prescription varying by distribution, but not hard to ascertain.
+
+To re-enter the desktop session you just need to provide your password again.
+
+The screenshot below shows how to lock the screen for Ubuntu. The details vary little in modern distributions.
+
+### Switching Users
+
+Linux is a true multi-user operating system, which allows more than one user to be simultaneously logged in. If more than one person uses the system, it is best for each person to have their own user account and password. This allows for individualized settings, home directories, and other files. Users can take turns using the machine, while keeping everyone's sessions alive, or even be logged in simultaneously through the network.
+
+### Shutting Down and Restarting
+
+Besides normal daily starting and stopping of the computer, a system restart may be required as part of certain major system updates, generally only those involving installing a new Linux kernel.
+
+Initiating the shutdown process from the graphical desktop is rather trivial on all current Linux distributions, with very little variation. We will discuss later how to do this from the command line, using the shutdown command.
+
+In all cases, you click on either a settings (gear) or a power icon and follow the prompts. 
+
+### Shutting Down and Restarting on GNOME
+
+To shut down the computer in any recent GNOME-based Linux distribution, perform the following steps:
+
+1. Click either the Power or the Gear icon in the upper-right corner of the screen.
+2. Click on Power Off, Restart, or Cancel. If you do nothing, the system will shutdown in 60 seconds.
+
+Shutdown, reboot, and logout operations will ask for confirmation before going ahead. This is because many applications will not save their data properly when terminated this way.
+
+Always save your documents and data before restarting, shutting down, or logging out. 
+
+### Suspending
+
+All modern computers support Suspend (or Sleep) Mode when you want to stop using your computer for a while. Suspend Mode saves the current system state and allows you to resume your session more quickly while remaining on, but uses very little power in the sleeping state. It works by keeping your system’s applications, desktop, and so on, in system RAM, but turning off all of the other hardware. This shortens the time for a full system start-up as well as conserves battery power. One should note that modern Linux distributions actually boot so fast that the amount of time saved is often minor.
+
+### Suspending the System
+
+To suspend the system, the procedure starts the same as that for shutdown or locking the screen.  
+
+The method is quite simple and universal in most recent GNOME-based distributions. If you click on the Power icon and hold for a short time and release, you will get the double line icon displayed below, which you then click to suspend the system. Some distributions, including Ubuntu, may still show a separate Suspend icon instead of using the above method.
+
+<i><b>NOTE</b>: To wake your system and resume your session, move the mouse or press any button on the keyboard. The system will wake up with the screen locked, just as if you had manually locked it; type in your password to resume.</i>
+
+### Basic Operations
+
+Even experienced users can forget the precise command that launches an application, or exactly what options and arguments it requires. Fortunately, Linux allows you to quickly open applications using the graphical interface.
+
+Applications are found at different places in Linux (and within GNOME):
+
+- From the Applications menu in the upper-left corner.
+- From the Activities menu in the upper-left corner.
+- In some Ubuntu versions, from the Dash button in the upper-left corner.
+- For KDE, and some other environments, applications can be opened from the button in the lower-left corner.
+
+### Locating Applications
+
+Unlike other operating systems, the initial install of Linux usually comes with a wide range of applications and software archives that contain thousands of programs that enable you to accomplish a wide variety of tasks with your computer. For most key tasks, a default application is usually already installed. However, you can always install more applications and try different options.
+
+For example, Firefox is popular as the default browser in many Linux distributions, while Epiphany, Konqueror, and Chromium (the open source base for Google Chrome) are usually available for install from software repositories. Proprietary web browsers, such as Opera and Chrome, are also available.
+
+Locating applications from the GNOME and KDE menus is easy, as they are neatly organized in functional submenus.
+
+### Default Applications
+
+Multiple applications are available to accomplish various tasks and to open a file of a given type. For example, you can click on a web address while reading an email and launch a browser such as Firefox or Chrome.
+
+To set default applications, enter the Settings menu (on all recent Linux distributions) and then click on either Default Applications or Details > Default Applications. The exact list will vary from what is shown here in the Ubuntu screenshot according to what is actually installed and available on your system.
+
+### File Manager
+
+Each distribution implements the Nautilus (File Manager) utility, which is used to navigate the file system. It can locate files and, when a file is clicked upon, either it will run if it is a program, or an associated application will be launched using the file as data. This behavior is completely familiar to anyone who has used other operating systems.
+
+To start the file manager you will have to click on its icon (a file cabinet) which is easily found, usually under Favorites or Accessories. It will have the name Files.
+
+This will open a window with your Home directory displayed. The left panel of the File Manager window holds a list of commonly used directories, such as Desktop, Documents, Downloads and Pictures.
+
+You can click the Magnifying Glass icon on the top-right to search for files or directories (folders).
+
+### Home Directories
+
+The File Manager lets you access different locations on your computer and the network, including the <b>Home</b> directory, <b>Desktop, Documents, Pictures,</b> and other <b>Other Locations</b>. 
+
+Every user with an account on the system will have a home directory, usually created under <b>/home</b>, and usually named according to the user, such as <b>/home/student</b>.
+
+By default, files the user saves will be placed in a directory tree starting there. Account creation, whether during system installation or at a later time, when a new user is added, also induces default directories to be created under the user's home directory, such as Documents, Desktop, and Downloads.
+
+In the screenshot shown for Ubuntu, we have chosen the list format and are also showing hidden files (those starting with a period). See if you can do the same on your distribution.
+
+<p align=center>
+<img src="/Python-01/Home directories 1" alt="Getting started" />
+
+<p align=center>
+<img src="/Python-01/Other Location.png" alt="Getting started" />
+
+### Viewing Files
+
+The File Manager allows you to view files and directories in more than one way.
+
+You can switch between the Icons and List formats, either by clicking the familiar icons in the top bar, or you can press CTRL-1 or CTRL-2 respectively.
+
+In addition, you can also arrange the files and directories by name, size, type, or modification date for further sorting. To do so, click View and select Arrange Items.
+
+Another useful option is to show hidden files (sometimes imprecisely called system files), which are usually configuration files that are hidden by default and whose name starts with a dot. To show hidden files, select Show Hidden Files from the menu or press CTRL-H.
+
+The file browser provides multiple ways to customize your window view to facilitate easy drag and drop file operations. You can also alter the size of the icons by selecting Zoom In and Zoom Out under the View menu.
+
+<p align=center>
+<img src="/Python-01/Viewing Files in openSUSE.png" alt="Getting started" />
+
+### Searching for Files
+
+The File Manager includes a great search tool inside the file browser window.
+
+1. Click Search in the toolbar (to bring up a text box).
+2. Enter the keyword in the text box. This causes the system to perform a recursive search from the current directory for any file or directory which contains a part of this keyword.
+
+To open the File Manager from the command line, on most systems simply type nautilus.
+
+The shortcut key to get to the search text box is CTRL-F. You can exit the search text box view by clicking the Search button or CTRL-F again.
+
+Another quick way to access a specific directory is to press CTRL-L, which will give you a Location text box to type in a path to a directory.
+
+### More About Searching for Files
+
+You can refine your search beyond the initial keyword by providing dropdown menus to further filter the search.
+
+1. Based on Location or File Type, select additional criteria from the dropdown.
+2. To regenerate the search, click the Reload button.
+3. To add multiple search criteria, click the + button and select Additional Search Criteria.
+
+For example, if you want to find a PDF file containing the word Linux in your home directory, navigate to your home directory and search for the word “Linux”. You should see that the default search criterion limits the search to your home directory already. To finish the job, click the + button to add another search criterion, select File Type for the type of criterion, and select PDF under the File Type dropdown.
+
+<p align=center>
+<img src="/Python-01/Searching for Files.png" alt="Getting started" />
+
+### Editing a File
+
+Editing any text file through the graphical interface is easy in the GNOME desktop environment. Simply double-click the file on the desktop or in the Nautilus file browser window to open the file with the default text editor.
+
+The default text editor in GNOME is gedit. It is simple yet powerful, ideal for editing documents, making quick notes, and programming. Although gedit is designed as a general purpose text editor, it offers additional features for spell checking, highlighting, file listings and statistics.
+
+### Removing a File
+
+Deleting a file in Nautilus will automatically move the deleted files to the .local/share/Trash/files/ directory (a trash can of sorts) under the user's home directory. There are several ways to delete files and directories using Nautilus.
+
+1. Select all the files and directories that you want to delete.
+2. Press CTRL-Delete on your keyboard, or right-click the file.
+3. Select Move to Trash.
+
+Note that you may have a Delete Permanently option which bypasses the trash folder, and that this option may be visible all the time or only in list (rather than) icon mode.
