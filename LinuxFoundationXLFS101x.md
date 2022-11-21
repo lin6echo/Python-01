@@ -713,3 +713,29 @@ You can also find YaST by clicking on Applications > Other-YaST, which is a stra
 
 openSUSE’s YaST software management application is similar to the graphical package managers in other distributions. A demonstration of the YaST software manager is shown later in this section.
 
+### Chapter Summary
+
+You have completed Chapter 5. Let's summarize the key concepts covered:
+
+- You can control basic configuration options and desktop settings through the System Settings panel.
+- Linux always uses Coordinated Universal Time (UTC) for its own internal time-keeping. You can set the date and time settings from the System Settings window.
+- The Network Time Protocol is the most popular and reliable protocol for setting the local time via Internet servers.
+- The Displays panel allows you to change the resolution of your display and configure multiple screens.
+- Network Manager can present available wireless networks, allow the choice of a wireless or mobile broadband network, handle passwords, and set up VPNs.
+- dpkg and RPM are the most popular package management systems used on Linux distributions.
+- Debian distributions use dpkg and apt-based utilities for package management.
+- RPM was developed by Red Hat, and adopted by a number of other distributions, including the openSUSE, Mandriva, CentOS, Oracle Linux, and others.
+
+### Internet Applications
+
+he Internet is a global network that allows users around the world to perform multiple tasks, such as searching for data, communicating through emails and online shopping. Obviously, you need to use network-aware applications to take advantage of the Internet. These include:
+
+- Web browsers
+- Email clients
+- Streaming media applications
+- Internet Relay Chats
+- Conferencing software
+
+<p align=center>
+<img src="/Python-01/Internet Application.png" alt="Getting started" />
+
