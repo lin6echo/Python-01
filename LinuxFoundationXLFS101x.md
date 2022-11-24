@@ -1157,3 +1157,57 @@ On Ubuntu versions before 18.04 LTS, substitute lightdm for gdm.
 
 </center>
 
+### Killing the Graphical User Interface
+
+Methods of bringing down the GUI:
+
+`student:/tmp> sudo systemctl stop gdm`
+`student:/tmp> sudo systemctl stop lightdm`
+`student:/tmp> sudo telinit 3`
+
+Methods of bringing the GUI back up:
+
+`student:/tmp> sudo systemctl start gdm`
+`student:/tmp> sudo systemctl start lightdm`
+`student:/tmp> sudo telinit 5`
+
+### Basic Operations
+
+In this section, we will discuss how to accomplish basic operations from the command line. These include how to log in and log out from the system, restart or shut down the system, locate applications, access directories, identify absolute and relative paths, and explore the filesystem.
+
+<center>
+
+![Basic Operations](basic.png)
+
+</center>
+
+### Logging In and Out
+
+An available text terminal will prompt for a username (with the string login:) and password. When typing your password, nothing is displayed on the terminal (not even a * to indicate that you typed in something), to prevent others from seeing your password. After you have logged into the system, you can perform basic operations.
+
+Once your session is started (either by logging into a text terminal or via a graphical terminal program), you can also connect and log into remote systems by using Secure SHell (SSH). For example, by typing ssh student@remote-server.com, SSH would connect securely to the remote machine (remote-server.com) and give student a command line terminal window, using either a password (as with regular logins) or cryptographic key to sign in without providing a password to verify the identity.
+
+<center>
+
+![Logging In and Out](logging.png)
+
+</center>
+
+### Rebooting and Shutting Down
+
+The preferred method to shut down or reboot the system is to use the shutdown command. This sends a warning message, and then prevents further users from logging in. The init process will then control shutting down or rebooting the system. It is important to always shut down properly; failure to do so can result in damage to the system and/or loss of data.
+
+The halt and poweroff commands issue shutdown -h to halt the system; reboot issues shutdown -r and causes the machine to reboot instead of just shutting down. Both rebooting and shutting down from the command line requires superuser (root) access.
+
+When administering a multi-user system, you have the option of notifying all users prior to shutdown, as in:
+
+`$ sudo shutdown -h 10:00` "Shutting down for scheduled maintenance."
+
+NOTE: On recent Wayland-based Linux distributions, broadcast messages do not appear on terminal emulation sessions running on the desktop; they appear only on the VT console displays.
+
+<center>
+
+![Rebooting and Shutting Down](rebooting.png)
+
+</center>
+
