@@ -1211,3 +1211,56 @@ NOTE: On recent Wayland-based Linux distributions, broadcast messages do not app
 
 </center>
 
+### Locating Applications
+
+Depending on the specifics of your particular distribution's policy, programs and software packages can be installed in various directories. In general, executable programs and scripts should live in the /bin, /usr/bin, /sbin, /usr/sbin directories, or somewhere under /opt. They can also appear in /usr/local/bin and /usr/local/sbin, or in a directory in a user's account space, such as /home/student/bin.
+
+One way to locate programs is to employ the which utility. For example, to find out exactly where the diff program resides on the filesystem:
+
+`$ which diff`
+/usr/bin/diff
+
+If which does not find the program, whereis is a good alternative because it looks for packages in a broader range of system directories:
+
+`$ whereis diff`
+diff: /usr/bin/diff /usr/share/man/man1/diff.1.gz /usr/share/man/man1p/diff.1p.gz
+
+as well as locating source and man files packaged with the program.
+
+### Accessing Directories
+
+When you first log into a system or open a terminal, the default directory should be your home directory. You can print the exact path of this by typing echo $HOME. Many Linux distributions actually open new graphical terminals in \$HOME/Desktop. The following commands are useful for directory navigation:
+
+<center>
+
+![Accessing Directories](accessing.png)
+
+</center>
+
+### Understanding Absolute and Relative Paths
+
+There are two ways to identify paths:
+
+- Absolute pathname
+            An absolute pathname begins with the root directory and follows the tree, branch by branch, until it reaches the desired directory or file. Absolute paths always start with /.
+- Relative pathname
+            A relative pathname starts from the present working directory. Relative paths never start with /.
+
+Multiple slashes (/) between directories and files are allowed, but all but one slash between elements in the pathname is ignored by the system. ////usr//bin is valid, but seen as /usr/bin by the system.
+
+Most of the time, it is most convenient to use relative paths, which require less typing. Usually, you take advantage of the shortcuts provided by: . (present directory), .. (parent directory) and ~ (your home directory).
+
+For example, suppose you are currently working in your home directory and wish to move to the /usr/bin directory. The following two ways will bring you to the same directory from your home directory:
+
+- Absolute pathname method
+            $ cd /usr/bin
+- Relative pathname method
+            $ cd ../../usr/bin
+
+In this case, the absolute pathname method requires less typing.
+
+<center>
+
+![Understanding Absolute and Relative Paths](understanding.png)
+
+</center>
