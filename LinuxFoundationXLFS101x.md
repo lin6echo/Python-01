@@ -1264,3 +1264,116 @@ In this case, the absolute pathname method requires less typing.
 ![Understanding Absolute and Relative Paths](understanding.png)
 
 </center>
+
+### Exploring the Filesystem
+
+Traversing up and down the filesystem tree can get tedious. The tree command is a good way to get a bird’s-eye view of the filesystem tree. Use tree -d to view just the directories and to suppress listing file names.
+
+The following commands can help in exploring the filesystem:
+
+<center>
+
+![Commands](commands.png)
+
+</center>
+
+### Hard Links
+
+he ln utility is used to create hard links and (with the -s option) soft links, also known as symbolic links or symlinks. These two kinds of links are very useful in UNIX-based operating systems.
+
+Suppose that file1 already exists. A hard link, called file2, is created with the command:
+
+`$ ln file1 file2`
+
+Note that two files now appear to exist. However, a closer inspection of the file listing shows that this is not quite true.
+
+`$ ls -li file1 file2`
+
+The -i option to ls prints out in the first column the inode number, which is a unique quantity for each file object. This field is the same for both of these files; what is really going on here is that it is only one file, but it has more than one name associated with it, as is indicated by the 2 that appears in the ls output. Thus, there was already another object linked to file1 before the command was executed.
+
+Hard links are very useful and they save space, but you have to be careful with their use, sometimes in subtle ways. For one thing, if you remove either file1 or file2 in the example, the inode object (and the remaining file name) will remain, which might be undesirable, as it may lead to subtle errors later if you recreate a file of that name.
+
+If you edit one of the files, exactly what happens depends on your editor; most editors, including vi and gedit, will retain the link by default, but it is possible that modifying one of the names may break the link and result in the creation of two objects.
+
+`touch file1`
+`ln file1 file2`
+`ls -li file?`
+
+### Soft (Symbolic) Links
+
+Soft (or Symbolic) links are created with the -s option, as in:
+
+`$ ln -s file1 file3`
+`$ ls -li file1 file3`
+
+Notice file3 no longer appears to be a regular file, and it clearly points to file1 and has a different inode number.
+
+Symbolic links take no extra space on the filesystem (unless their names are very long). They are extremely convenient, as they can easily be modified to point to different places. An easy way to create a shortcut from your home directory to long pathnames is to create a symbolic link.
+
+Unlike hard links, soft links can point to objects even on different filesystems, partitions, and/or disks and other media, which may or may not be currently available or even exist. In the case where the link does not point to a currently available or existing object, you obtain a dangling link.
+
+`ln -s file1 file3`
+`ls -li file1 file3`
+
+### Navigating the Directory History
+
+The `cd` command remembers where you were last, and lets you get back there with `cd` -. For remembering more than just the last directory visited, use `pushd` to change the directory instead of `cd`; this pushes your starting directory onto a list. Using `popd` will then send you back to those directories, walking in reverse order (the most recent directory will be the first one retrieved with `popd`). The list of directories is displayed with the `dirs` command.
+
+<center>
+
+![Navigating Through Directory History](navigating.png)
+
+</center>
+
+### Working with Files
+
+Linux provides many commands that help you with viewing the contents of a file, creating a new file or an empty file, changing the timestamp of a file, and moving, removing and renaming a file or directory. These commands help you in managing your data and files and in ensuring that the correct data is available at the correct location.
+
+### Viewing Files
+
+You can use the following command line utilities to view files:
+
+<center>
+
+![Working with files](workingwithfiles.png)
+
+</center>
+
+### touch
+
+touch is often used to set or update the access, change, and modify times of files. By default, it resets a file's timestamp to match the current time.
+
+However, you can also create an empty file using touch:
+
+`$ touch <filename>`
+
+This is normally done to create an empty file as a placeholder for a later purpose.
+
+touch provides several useful options. For example, the -t option allows you to set the date and timestamp of the file to a specific value, as in:
+
+`$ touch -t 12091600 myfile`
+
+This sets the myfile file's timestamp to 4 p.m., December 9th (12 09 1600).
+
+<center>
+
+![touch](touch.png)
+
+</center>
+
+### mkdir and rmdir
+
+mkdir is used to create a directory:
+
+- `mkdir sampdir` 
+            It creates a sample directory named sampdir under the current directory. 
+- `mkdir /usr/sampdir` 
+            It creates a sample directory called sampdir under /usr.
+
+Removing a directory is done with rmdir. The directory must be empty or the command will fail. To remove a directory and all of its contents you have to do rm -rf.
+
+<center>
+
+![mkdir](mkdir.png)
+
+</center>
