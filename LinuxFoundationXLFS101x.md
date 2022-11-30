@@ -1404,3 +1404,38 @@ While typing `rm –rf` is a fast and easy way to remove a whole filesystem tree
 ![Renaming or Removing a Directory](removedir.png)
 
 </center>
+
+### Modifying the Command Line Prompt
+
+The PS1 variable is the character string that is displayed as the prompt on the command line. Most distributions set PS1 to a known default value, which is suitable in most cases. However, users may want custom information to show on the command line. For example, some system administrators require the user and the host system name to show up on the command line as in:
+
+`student@c8 $`
+
+This could prove useful if you are working in multiple roles and want to be always reminded of who you are and what machine you are on. The prompt above could be implemented by setting the PS1 variable to: \u@\h \$.
+
+For example:
+
+`$ echo $PS1`
+`\$`
+`$ PS1="\u@\h \$ "`
+`student@c8 $ echo $PS1`
+`\u@\h \$`
+`student@c8 $`
+
+By convention, most systems are set up so that the root user has a pound sign (#) as their prompt.
+
+### Standard File Streams
+
+When commands are executed, by default there are three standard file streams (or descriptors) always open for use: standard input (standard in or stdin), standard output (standard out or stdout) and standard error (or stderr).
+
+<center>
+
+![Standard File Streams](standard.png)
+
+</center>
+
+Usually, stdin is your keyboard, and stdout and stderr are printed on your terminal. stderr is often redirected to an error logging file, while stdin is supplied by directing input to come from a file or from the output of a previous command through a pipe. stdout is also often redirected into a file. Since stderr is where error messages are written, usually nothing will go there.
+
+In Linux, all open files are represented internally by what are called file descriptors. Simply put, these are represented by numbers starting at zero. stdin is file descriptor 0, stdout is file descriptor 1, and stderr is file descriptor 2. Typically, if other files are opened in addition to these three, which are opened by default, they will start at file descriptor 3 and increase from there.
+
+On the next page and in the chapters ahead, you will see examples which alter where a running command gets its input, where it writes its output, or where it prints diagnostic (error) messages. 
