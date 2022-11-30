@@ -1377,3 +1377,30 @@ Removing a directory is done with rmdir. The directory must be empty or the comm
 ![mkdir](mkdir.png)
 
 </center>
+
+### Moving, Renaming or Removing a File
+
+Note that mv does double duty, in that it can:
+
+- Simply rename a file
+- Move a file to another location, while possibly changing its name at the same time.
+
+If you are not certain about removing files that match a pattern you supply, it is always good to run rm interactively (rm –i) to prompt before every removal.
+
+<center>
+
+![Removing a file](remove.png)
+
+</center>
+
+### Renaming or Removing a Directory
+
+`rmdir` works only on empty directories; otherwise you get an error. 
+
+While typing `rm –rf` is a fast and easy way to remove a whole filesystem tree recursively, it is extremely dangerous and should be used with the utmost care, especially when used by root (recall that recursive means drilling down through all sub-directories, all the way down a tree).
+
+<center>
+
+![Renaming or Removing a Directory](removedir.png)
+
+</center>
