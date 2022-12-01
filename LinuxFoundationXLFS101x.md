@@ -1516,3 +1516,47 @@ To search for files using the ? wildcard, replace each unknown character with ?.
 
 To search for files using the * wildcard, replace the unknown string with *. For example, if you remember only that the extension was .out, type ls *.out.
 
+### The find Program
+
+find is an extremely useful and often-used utility program in the daily life of a Linux system administrator. It recurses down the filesystem tree from any particular directory (or set of directories) and locates files that match specified conditions. The default pathname is always the present working directory.
+
+For example, administrators sometimes scan for potentially large core files (which contain diagnostic information after a program fails) that are more than several weeks old in order to remove them.
+
+It is also common to remove files in inessential or outdated files in /tmp (and other volatile directories, such as those containing cached files) that have not been accessed recently. Many Linux distributions use shell scripts that run periodically (through cron usually) to perform such house cleaning.
+
+### Using find
+
+When no arguments are given, find lists all files in the current directory and all of its subdirectories. Commonly used options to shorten the list include -name (only list files with a certain pattern in their name), -iname (also ignore the case of file names), and -type (which will restrict the results to files of a certain specified type, such as d for directory, l for symbolic link, or f for a regular file, etc.). 
+
+Searching for files and directories named gcc:
+
+`$ find /usr -name gcc`
+
+Searching only for directories named gcc:
+
+`$ find /usr -type d -name gcc`
+
+Searching only for regular files named gcc:
+
+`$ find /usr -type f -name gcc`
+
+### Using Advanced find Options
+
+Another good use of find is being able to run commands on the files that match your search criteria. The -exec option is used for this purpose.
+
+To find and remove all files that end with .swp:
+
+`$ find -name "*.swp" -exec rm {} ’;’`
+
+The {} (squiggly brackets) is a placeholder that will be filled with all the file names that result from the find expression, and the preceding command will be run on each one individually.
+
+Please note that you have to end the command with either ‘;’ (including the single-quotes) or "\;". Both forms are fine.
+
+One can also use the -ok option, which behaves the same as -exec, except that find will prompt you for permission before executing the command. This makes it a good way to test your results before blindly executing any potentially dangerous commands.
+
+<center>
+
+![Finding and Removing Files that End with .swp](finding.png)
+
+</center>
+
