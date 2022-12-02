@@ -1560,3 +1560,130 @@ One can also use the -ok option, which behaves the same as -exec, except that fi
 
 </center>
 
+### Finding Files Based on Time and Size
+
+It is sometimes the case that you wish to find files according to attributes, such as when they were created, last used, etc., or based on their size. It is easy to perform such searches.
+
+To find files based on time:
+
+`$ find / -ctime 3`
+
+Here, -ctime is when the inode metadata (i.e. file ownership, permissions, etc.) last changed; it is often, but not necessarily, when the file was first created. You can also search for accessed/last read (-atime) or modified/last written (-mtime) times. The number is the number of days and can be expressed as either a number (n) that means exactly that value, +n, which means greater than that number, or -n, which means less than that number. There are similar options for times in minutes (as in -cmin, -amin, and -mmin).
+
+To find files based on sizes:
+
+`$ find / -size 0`
+
+Note the size here is in 512-byte blocks, by default; you can also specify bytes (c), kilobytes (k), megabytes (M), gigabytes (G), etc. As with the time numbers above, file sizes can also be exact numbers (n), +n or -n. For details, consult the man page for find.
+
+For example, to find files greater than 10 MB in size and running a command on those files:
+
+`$ find / -size +10M -exec command {} ’;’`
+
+### Finding Directories and Creating Symbolic Links
+
+Find the init.d directory, starting from /, and then create a symbolic link from within your home directory to this directory.
+
+Note that this SysVinit directory is no longer used much in systemd-based systems, but is kept for backwards compatibility reasons.
+
+`student:/tmp> find / -type d -name init.d`
+`student:/tmp> cd ~`
+`student:/home/student> ln -s /etc/init.d . ` 
+
+Note you will get a lot of noise about trying to look at files and directories normal users are not allowed to examine. If you preface the find command with sudo these will not occur.
+
+### Package Management Systems on Linux
+
+The core parts of a Linux distribution and most of its add-on software are installed via the Package Management System. Each package contains the files and other instructions needed to make one software component work well and cooperate with the other components that comprise the entire system. Packages can depend on each other. For example, a package for a web-based application written in PHP can depend on the PHP package.
+
+There are two broad families of package managers: those based on Debian and those which use RPM as their low-level package manager. The two systems are incompatible, but broadly speaking, provide the same features and satisfy the same needs. There are some other systems used by more specialized Linux distributions.
+
+In this section, you will learn how to install, remove, or search for packages from the command line using these two package management systems.
+
+### Package Managers: Two Levels
+
+Both package management systems operate on two distinct levels: a low-level tool (such as dpkg or rpm) takes care of the details of unpacking individual packages, running scripts, getting the software installed correctly, while a high-level tool (such as apt-get, dnf, yum, or zypper) works with groups of packages, downloads packages from the vendor, and figures out dependencies.
+
+Most of the time users need to work only with the high-level tool, which will take care of calling the low-level tool as needed. Dependency resolution is a particularly important feature of the high-level tool, as it handles the details of finding and installing each dependency for you. Be careful, however, as installing a single package could result in many dozens or even hundreds of dependent packages being installed.
+
+<center>
+
+![Package Managers: Two Levels](packagemanager.png)
+
+</center>
+
+### Working With Different Package Management Systems
+
+The Advanced Packaging Tool (apt) is the underlying package management system that manages software on Debian-based systems. While it forms the backend for graphical package managers, such as the Ubuntu Software Center and synaptic, its native user interface is at the command line, with programs that include apt (or apt-get) and apt-cache.
+
+dnf is the open source command-line package-management utility for the RPM-compatible Linux systems that belongs to the Red Hat family. dnf has both command line and graphical user interfaces. Fedora and RHEL 8 replaced the older yum utility with dnf, thereby eliminating a lot of historical baggage, as well as introducing many nice new capabilities. dnf is pretty much backwards-compatible with yum for day-to-day commands.
+
+<center>
+
+![Working with Different Package Management Systems](different.png)
+
+</center>
+
+zypper is the package management system for the SUSE/openSUSE family and is also based on RPM. zypper also allows you to manage repositories from the command line. zypper is fairly straightforward to use and resembles dnf/yum quite closely.
+
+To learn the basic packaging commands, take a look at these basic packaging commands:
+
+<center>
+
+![Basic packaging commands](commandpackage.png)
+
+</center>
+
+### Installing and Removing Software Packages
+
+Using the upper-level package management system appropriate for your Linux distribution, do the following:
+
+1. Install the dump package on your system.
+2. Remove the dump package from your system.
+
+NOTE: If dump is already installed (you will be told so when you try to install), then do things in opposite order, i.e. remove and then install.
+
+`student:/tmp> apt-get install dump`
+`student:/tmp> apt-get remove dump  `    
+
+or
+
+`student:/tmp> dnf install dump`
+`student:/tmp> dnf remove dump  `    
+
+or
+
+`student:/tmp> yum install dump`
+`student:/tmp> yum remove dump   `   
+
+or
+
+`student:/tmp> zypper install dump`
+`student:/tmp> zypper remove dump`
+
+### Chapter Summary
+
+ou have completed Chapter 7. Let’s summarize the key concepts we covered:
+
+- Virtual terminals (VT) in Linux are consoles, or command line terminals that use the connected monitor and keyboard.
+- Different Linux distributions start and stop the graphical desktop in different ways.
+- A terminal emulator program on the graphical desktop works by emulating a terminal within a window on the desktop.
+- The Linux system allows you to either log in via text terminal or remotely via the console.
+- When typing your password, nothing is printed to the terminal, not even a generic symbol to indicate that you typed.
+- The preferred method to shut down or reboot the system is to use the shutdown command.
+- There are two types of pathnames: absolute and relative.
+- An absolute pathname begins with the root directory and follows the tree, branch by branch, until it reaches the desired directory or file.
+- A relative pathname starts from the present working directory.
+- Using hard and soft (symbolic) links is extremely useful in Linux.
+- cd remembers where you were last, and lets you get back there with cd -.
+- locate performs a database search to find all file names that match a given pattern.
+- find locates files recursively from a given directory or set of directories.
+- find is able to run commands on the files that it lists, when used with the -exec option.
+- touch is used to set the access, change, and edit times of files, as well as to create empty files.
+- The Advanced Packaging Tool (apt) package management system is used to manage installed software on Debian-based systems.
+- You can use the dnf command-line package management utility for the RPM-based Red Hat Family Linux distributions.
+- The zypper package management system is based on RPM and used for openSUSE.
+
+
+
+
