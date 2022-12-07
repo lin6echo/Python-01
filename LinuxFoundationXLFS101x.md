@@ -2019,3 +2019,69 @@ In such cases, you can run the job in the background and free the shell for othe
 
 You can either use CTRL-Z to suspend a foreground job or CTRL-C to terminate a foreground job and can always use the bg and fg commands to run a process in the background and foreground, respectively.
 
+### Managing Jobs
+
+The jobs utility displays all jobs running in background. The display shows the job ID, state, and command name, as shown here.
+
+jobs -l provides the same information as jobs, and adds the PID of the background jobs.
+
+The background jobs are connected to the terminal window, so, if you log off, the jobs utility will not show the ones started from that window.
+
+### Getting Uptime and Load Averages
+
+Ascertain how long your system has been up. 
+
+Display its load averages.
+
+A very simple method is just to use the uptime utility:
+
+`student:/tmp> uptime`
+
+A second method is to look at the first line of output from top (to be discussed in detail shortly):
+
+`student:/tmp> top | head`
+
+A third method is to use w:
+
+`student:/tmp> w`
+
+### Background and Foreground Jobs
+
+We are going to launch a graphical program from a terminal window, so that one can no longer type in the window. gedit is an easy choice, but you can substitute any other program that does this.
+
+The solution file contains a step-by-step procedure for putting jobs in background, bringing them back to foreground, etc. Please repeat the steps, substituting the program you are using if it is not gedit.
+
+We are going to launch a graphical program from a terminal window so that one can no longer type in the window. gedit is an easy choice, but you can substitute any other program that does this.
+
+1. Open gedit on a new file as in:
+
+    `$ gedit somefile `    
+
+2. While you can still type in the terminal window, the shell will not pay attention to what you input.
+    While your pointer is over the terminal window, hit CTRL-Z.
+    `^Z`
+    You can no longer type in the gedit window.
+3. With jobs -l, see what processes have been launched from this terminal window:
+
+    `$ jobs -l`
+4. Now put the most recent job (gedit somefile) in the background:
+
+    `$ bg`
+5. Put the process in foreground again:
+
+    `$ fg`
+    Note you once again input to the terminal window. It has no effect.
+6. To clean up, suspend the process again and then use kill to terminate it:
+
+    `^Z`
+    `$ jobs -l`
+    `$ kill -9 19827`
+    `$ jobs -l`
+
+### The ps Command (System V Style)
+
+ps provides information about currently running processes keyed by PID. If you want a repetitive update of this status, you can use top or other commonly installed variants (such as htop or atop) from the command line, or invoke your distribution's graphical system monitor application.
+
+ps has many options for specifying exactly which tasks to examine, what information to display about them, and precisely what output format should be used.
+
+Without options, ps will display all processes running under the current shell. You can use the -u option to display information of processes for a specified username. The command ps -ef displays all the processes in the system in full detail. The command ps -eLf goes one step further and displays one line of information for every thread (remember, a process can contain multiple threads).
