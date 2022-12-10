@@ -2221,3 +2221,269 @@ sleep and at are quite different; sleep delays execution for a specific period, 
 ![Sleep](sleep.png)
 
 </center>
+
+### Using at for Batch Processing in the Future
+
+Schedule a very simple task to run at a future time from now. This can be as simple as running ls or date and saving the output. You can use a time as short as one minute in the future.
+
+Note that the command will run in the directory from which you schedule it with at.
+
+Do this:
+
+            From a short bash script.
+            Interactively.
+
+
+1. Create the file testat.sh containing:
+
+    `#!/bin/bash`
+    `date > /tmp/datestamp`
+
+    and then make it executable and queue it up with at:
+
+    `$ chmod +x testat.sh`
+    `$ at now + 1 minute -f testat.sh`
+
+    You can see if the job is queued up to run with atq:
+
+    `$ atq`
+    17	Wed Apr 22 08:55:00 2015 a student
+
+    Make sure the job actually ran:
+
+    `$ cat /tmp/datestamp`
+    Wed Apr 22 08:55:00 CDT 2015
+
+    What happens if you take the /tmp/datestamp out of the command? (Hint: type mail if not prompted to do so!)
+
+
+2. Interactively, it is basically the same procedure. Just queue up the job with:
+
+    `$ at now + 1 minute`
+    at> date > /tmp/datestamp
+    CTRL-D
+    `$ atq`
+
+### Scheduling a Periodic Task with cron
+
+Set up a cron job to do some simple task every day at 10 a.m.
+
+Create a file named mycrontab with the following content:
+
+0 10 * * * /tmp/myjob.sh
+and then create /tmp/myjob.sh containing:
+
+`#!/bin/bash`
+`echo Hello I am running $0 at $(date)`
+
+and make it executable:
+
+`$ chmod +x /tmp/myjob.sh`
+
+Put it in the crontab system with:
+
+`$ crontab mycrontab`
+
+and verify it was loaded with:
+
+`$ crontab -l`
+
+0 10 * * * /tmp/myjob.sh
+`$ sudo ls -l /var/spool/cron/student`
+-rw------- 1 student student 25 Apr 22 09:59 /var/spool/cron/student
+`$ sudo cat /var/spool/cron/student`
+0 10 * * * /tmp/myjob.sh
+
+Note: If you don't really want this running every day, printing out messages like:
+
+Hello I am running /tmp/myjob.sh at Wed Apr 22 10:03:48 CDT 2015
+
+and mailing them to you, you can remove it with:
+
+`$ crontab -r`
+
+If the machine is not up at 10 AM on a given day, anacron will run the job at a suitable time.
+
+### Chapter Summary
+
+You have completed Chapter 9. Let’s summarize the key concepts covered:
+
+- Processes are used to perform various tasks on the system.
+. Processes can be single-threaded or multi-threaded.
+- Processes can be of different types, such as interactive and non-interactive.
+- Every process has a unique identifier (PID) to enable the operating system to keep track of it.
+- The nice value, or niceness, can be used to set priority.
+- ps provides information about the currently running processes.
+- You can use top to get constant real-time updates about overall system performance, as well as information about the processes running on the system.
+- Load average indicates the amount of utilization the system is under at particular times.
+- Linux supports background and foreground processing for a job.
+- at executes any non-interactive command at a specified time.
+- cron is used to schedule tasks that need to be performed at regular intervals.
+
+### Introduction to Filesystems
+
+In Linux (and all UNIX-like operating systems) it is often said “Everything is a file”, or at least it is treated as such. This means whether you are dealing with normal data files and documents, or with devices such as sound cards and printers, you interact with them through the same kind of Input/Output (I/O) operations. This simplifies things: you open a “file” and perform normal operations like reading the file and writing on it (which is one reason why text editors, which you will learn about in an upcoming section, are so important).
+
+On many systems (including Linux), the filesystem is structured like a tree. The tree is usually portrayed as inverted, and starts at what is most often called the root directory, which marks the beginning of the hierarchical filesystem and is also sometimes referred to as the trunk, or simply denoted by /. The root directory is not the same as the root user. The hierarchical filesystem also contains other elements in the path (directory names), which are separated by forward slashes (/), as in /usr/bin/emacs, where the last element is the actual file name.
+
+In this section, you will learn about some basic concepts, including the filesystem hierarchy, as well as about disk partitions.
+
+<center>
+
+![SleepFilesystems](filesystem.png)
+
+</center>
+
+### Filesystem Varieties
+
+Linux supports a number of native filesystem types, expressly created by Linux developers, such as:
+
+            ext3
+            ext4
+            squashfs
+            btrfs
+
+It also offers implementations of filesystems used on other alien operating systems, such as those from:
+
+            Windows (ntfs, vfat)
+            SGI (xfs)
+            IBM (jfs)
+            MacOS (hfs, hfs+)
+
+Many older, legacy filesystems, such as FAT, are also supported.
+
+It is often the case that more than one filesystem type is used on a machine, based on considerations such as the size of files, how often they are modified, what kind of hardware they sit on and what kind of access speed is needed, etc. The most advanced filesystem types in common use are the journaling varieties: ext4, xfs, btrfs, and jfs. These have many state-of-the-art features and high performance, and are very hard to corrupt accidentally.
+
+### Linux Partitions
+
+Each filesystem on a Linux system occupies a disk partition. Partitions help to organize the contents of disks according to the kind and use of the data contained. For example, important programs required to run the system are often kept on a separate partition (known as root or /) than the one that contains files owned by regular users of that system (/home). In addition, temporary files created and destroyed during the normal operation of Linux may be located on dedicated partitions. One advantage of this kind of isolation by type and variability is that when all available space on a particular partition is exhausted, the system may still operate normally.
+
+The picture shows the use of the gparted utility, which displays the partition layout on a system which has four operating systems on it: RHEL 8, CentOS 7, Ubuntu and Windows.
+
+<center>
+
+![Gparted](gparted.png)
+
+</center>
+
+### Mount Points
+
+Before you can start using a filesystem, you need to mount it on the filesystem tree at a mount point. This is simply a directory (which may or may not be empty) where the filesystem is to be grafted on. Sometimes, you may need to create the directory if it does not already exist.
+
+<center>
+
+![Mount Points](mount.png)
+
+</center>
+
+WARNING: If you mount a filesystem on a non-empty directory, the former contents of that directory are covered-up and not accessible until the filesystem is unmounted. Thus, mount points are usually empty directories.
+
+### Mounting and Unmounting
+
+The mount command is used to attach a filesystem (which can be local to the computer or on a network) somewhere within the filesystem tree. The basic arguments are the device node and mount point. For example,
+
+`$ sudo mount /dev/sda5 /home`
+
+will attach the filesystem contained in the disk partition associated with the /dev/sda5 device node into the filesystem tree at the /home mount point. There are other ways to specify the partition other than the device node, such as using the disk label or UUID.
+
+To unmount the partition, the command would be:
+
+`$ sudo umount /home`
+
+Note the command is umount, not unmount! Only a root user (logged in as root, or using sudo) has the privilege to run these commands, unless the system has been otherwise configured.
+
+If you want it to be automatically available every time the system starts up, you need to edit /etc/fstab accordingly (the name is short for filesystem table). Looking at this file will show you the configuration of all pre-configured filesystems. man fstab will display how this file is used and how to configure it.
+
+Executing mount without any arguments will show all presently mounted filesystems.
+
+### NFS and Network Filesystems
+
+It is often necessary to share data across physical systems which may be either in the same location or anywhere that can be reached by the Internet. A network (also sometimes called distributed) filesystem may have all its data on one machine or have it spread out on more than one network node. A variety of different filesystems can be used locally on the individual machines; a network filesystem can be thought of as a grouping of lower level filesystems of varying types.
+
+The command df -Th (disk-free) will display information about mounted filesystems, including the filesystem type, and usage statistics about currently used and available space.
+
+<center>
+
+![The Client-Server Architecture of NFS ](clientserver.png)
+
+</center>
+
+Many system administrators mount remote users' home directories on a server in order to give them access to the same files and configuration files across multiple client systems. This allows the users to log in to different computers, yet still have access to the same files and resources.
+
+The most common such filesystem is named simply NFS (the Network Filesystem). It has a very long history and was first developed by Sun Microsystems. Another common implementation is CIFS (also termed SAMBA), which has Microsoft roots. We will restrict our attention in what follows to NFS.
+
+### NFS on the Server
+
+We will now look in detail at how to use NFS on the server.
+
+On the server machine, NFS uses daemons (built-in networking and service processes in Linux) and other system servers are started at the command line by typing:
+
+`$ sudo systemctl start nfs`
+
+NOTE: On RHEL/CentOS 8, the service is called nfs-server, not nfs.
+
+The text file /etc/exports contains the directories and permissions that a host is willing to share with other systems over NFS. A very simple entry in this file may look like the following:
+
+/projects *.example.com(rw)
+
+This entry allows the directory /projects to be mounted using NFS with read and write (rw) permissions and shared with other hosts in the example.com domain. As we will detail in the next chapter, every file in Linux has three possible permissions: read (r), write (w) and execute (x).
+
+After modifying the /etc/exports file, you can type exportfs -av to notify Linux about the directories you are allowing to be remotely mounted using NFS. You can also restart NFS with sudo systemctl restart nfs, but this is heavier, as it halts NFS for a short while before starting it up again. To make sure the NFS service starts whenever the system is booted, issue sudo systemctl enable nfs.
+
+### NFS on the Client
+
+On the client machine, if it is desired to have the remote filesystem mounted automatically upon system boot, /etc/fstab is modified to accomplish this. For example, an entry in the client's /etc/fstab might look like the following:
+
+servername:/projects /mnt/nfs/projects nfs defaults 0 0
+
+You can also mount the remote filesystem without a reboot or as a one-time mount by directly using the mount command:
+
+`$ sudo mount servername:/projects /mnt/nfs/projects`
+
+Remember, if /etc/fstab is not modified, this remote mount will not be present the next time the system is restarted. Furthermore, you may want to use the nofail option in fstab in case the NFS server is not live at boot.
+
+### Exploring Mounted Filesystems
+
+Issue the command:
+
+`student:/tmp> cat /etc/fstab`
+
+Now type:
+
+`student:/tmp> mount`
+
+Compare the results. What are the differences?
+
+Find another way to see a list of the mounted filesystems, by examining the /proc pseudo-filesystem.
+
+Typically, mount will show more filesystems mounted than are shown in /etc/fstab, which only lists those which are explicitly requested.
+
+The system, however, will mount additional special filesystems required for normal operation, which are not enumerated in /etc/fstab.
+
+Another way to show mounted filesystems is to type:
+
+`student:/tmp> cat /proc/mounts`
+
+which is essentially how the utility gets its information.
+
+### Overview of User Home Directories
+
+In this section, you will learn to identify and differentiate between the most important directories found in Linux. We start with ordinary users' home directory space.
+
+Each user has a home directory, usually placed under /home. The /root ("slash-root") directory on modern Linux systems is no more than the home directory of the root user (or superuser, or system administrator account).
+
+On multi-user systems, the /home directory infrastructure is often mounted as a separate filesystem on its own partition, or even exported (shared) remotely on a network through NFS.
+
+Sometimes, you may group users based on their department or function. You can then create subdirectories under the /home directory for each of these groups. For example, a school may organize /home with something like the following:
+
+    /home/faculty/
+    /home/staff/
+    /home/students/
+
+<center>
+
+![Home Directories](home.png)
+
+</center>
+
+
