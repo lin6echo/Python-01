@@ -2613,3 +2613,110 @@ The Grand Unified Bootloader (GRUB) files such as /boot/grub/grub.conf or /boot/
 </center>
 
 The screenshot shows an example listing of the /boot directory, taken from a RHEL system that has multiple installed kernels, including both distribution-supplied and custom-compiled ones. Names will vary and things will tend to look somewhat different on a different distribution.
+
+### The /lib and /lib64 Directories
+
+/lib contains libraries (common code shared by applications and needed for them to run) for the essential programs in /bin and /sbin. These library filenames either start with ld or lib. For example, /lib/libncurses.so.5.9.
+
+Most of these are what is known as dynamically loaded libraries (also known as shared libraries or Shared Objects (SO)). On some Linux distributions there exists a /lib64 directory containing 64-bit libraries, while /lib contains 32-bit versions.
+
+On recent Linux distributions, one finds:
+
+<center>
+
+![The /lib and /lib64 Directories](lib.png)
+
+</center>
+
+.e., just like for /bin and /sbin, the directories just point to those under /usr.
+
+Kernel modules (kernel code, often device drivers, that can be loaded and unloaded without re-starting the system) are located in /lib/modules/\<kernel-version-number>.
+
+<center>
+
+![/lib/modules Contents](libmodules.png)
+
+</center>
+
+### Removable media: the /media, /run and /mnt Directories
+
+One often uses removable media, such as USB drives, CDs and DVDs. To make the material accessible through the regular filesystem, it has to be mounted at a convenient location. Most Linux systems are configured so any removable media are automatically mounted when the system notices something has been plugged in.
+
+While historically this was done under the /media directory, modern Linux distributions place these mount points under the /run directory. For example, a USB pen drive with a label myusbdrive for a user named student would be mounted at /run/media/student/myusbdrive.
+
+The /mnt directory has been used since the early days of UNIX for temporarily mounting filesystems. These can be those on removable media, but more often might be network filesystems, which are not normally mounted. Or these can be temporary partitions, or so-called loopback filesystems, which are files which pretend to be partitions.
+
+<center>
+
+![The /run Directory](run.png)
+
+</center>
+
+### Additional Directories Under /:
+
+There are some additional directories to be found under the root directory:
+
+<center>
+
+![Additional Directory](add.png)
+
+</center>
+
+### The /usr Directory Tree
+
+The /usr directory tree contains theoretically non-essential programs and scripts (in the sense that they should not be needed to initially boot the system) and has at least the following sub-directories:
+
+<center>
+
+![The /usr Directory Tree](usr.png)
+
+</center>
+
+### Comparing Files with diff
+
+Now that you know about the filesystem and its structure, let’s learn how to manage files and directories.
+
+diff is used to compare files and directories. This often-used utility program has many useful options (see: man diff) including:
+
+<center>
+
+![Comparing Files with diff](diff.png)
+
+</center>
+
+To compare two files, at the command prompt, type diff [options] \<filename1> \<filename2>. diff is meant to be used for text files; for binary files, one can use cmp. 
+
+In this section, you will learn additional methods for comparing files and how to apply patches to files.
+
+### Using diff3 and patch
+
+You can compare three files at once using diff3, which uses one file as the reference basis for the other two. For example, suppose you and a co-worker both have made modifications to the same file working at the same time independently. diff3 can show the differences based on the common file you both started with. The syntax for diff3 is as follows:
+
+`$ diff3 MY-FILE COMMON-FILE YOUR-FILE`
+
+The graphic shows the use of diff3.
+
+<center>
+
+![Using diff3](diff3.png)
+
+</center>
+
+Many modifications to source code and configuration files are distributed utilizing patches, which are applied, not surprisingly, with the patch program. A patch file contains the deltas (changes) required to update an older version of a file to the new one. The patch files are actually produced by running diff with the correct options, as in:
+
+`$ diff -Nur originalfile newfile > patchfile`
+
+Distributing just the patch is more concise and efficient than distributing the entire file. For example, if only one line needs to change in a file that contains 1000 lines, the patch file will be just a few lines long.
+
+<center>
+
+![Using patch](patch.png)
+
+</center>
+
+To apply a patch, you can just do either of the two methods below:
+
+`$ patch -p1 < patchfile`
+`$ patch originalfile patchfile`
+
+The first usage is more common, as it is often used to apply changes to an entire directory tree, rather than just one file, as in the second example. To understand the use of the -p1 option and many others, see the man page for patch.
