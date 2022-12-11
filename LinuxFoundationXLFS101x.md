@@ -2486,4 +2486,72 @@ Sometimes, you may group users based on their department or function. You can th
 
 </center>
 
+### The /bin and /sbin Directories
+
+The /bin directory contains executable binaries, essential commands used to boot the system or in single-user mode, and essential commands required by all system users, such as cat, cp, ls, mv, ps, and rm.
+
+<center>
+
+![/bin Directory](bin.png)
+
+</center>
+
+Likewise, the /sbin directory is intended for essential binaries related to system administration, such as fsck and ip. To view a list of these programs, type:
+
+`$ ls /bin /sbin`
+
+<center>
+
+![/sbin Directory](sbin.png)
+
+</center>
+
+Commands that are not essential (theoretically) for the system to boot or operate in single-user mode are placed in the /usr/bin and /usr/sbin directories. Historically, this was done so /usr could be mounted as a separate filesystem that could be mounted at a later stage of system startup or even over a network. However, nowadays most find this distinction is obsolete. In fact, many distributions have been discovered to be unable to boot with this separation, as this modality had not been used or tested for a long time.
+
+Thus, on some of the newest Linux distributions /usr/bin and /bin are actually just symbolically linked together, as are /usr/sbin and /sbin.
+
+### The /proc Filesystem
+
+Certain filesystems, like the one mounted at /proc, are called pseudo-filesystems because they have no permanent presence anywhere on the disk.
+
+The /proc filesystem contains virtual files (files that exist only in memory) that permit viewing constantly changing kernel data. /proc contains files and directories that mimic kernel structures and configuration information. It does not contain real files, but runtime system information, e.g. system memory, devices mounted, hardware configuration, etc. Some important entries in /proc are:
+
+    /proc/cpuinfo
+    /proc/interrupts
+    /proc/meminfo
+    /proc/mounts
+    /proc/partitions
+    /proc/version
+
+/proc has subdirectories as well, including:
+
+    /proc/<Process-ID-#>
+    /proc/sys
+
+The first example shows there is a directory for every process running on the system, which contains vital information about it. The second example shows a virtual directory that contains a lot of information about the entire system, in particular its hardware and configuration. The /proc filesystem is very useful because the information it reports is gathered only as needed and never needs storage on the disk.
+
+<center>
+
+![The /proc Filesystem](proc.png)
+
+</center>
+
+### The /dev Directory
+
+The /dev directory contains device nodes, a type of pseudo-file used by most hardware and software devices, except for network devices. This directory is:
+
+- Empty on the disk partition when it is not mounted
+
+- Contains entries which are created by the udev system, which creates and manages device nodes on Linux, creating them dynamically when devices are found. The /dev directory contains items such as:
+
+                    /dev/sda1 (first partition on the first hard disk)
+                    /dev/lp1 (second printer)
+                    /dev/random (a source of random numbers).
+
+<center>
+
+![The /dev Directory](dev.png)
+
+</center>
+
 
