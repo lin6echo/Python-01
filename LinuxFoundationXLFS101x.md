@@ -2554,4 +2554,62 @@ The /dev directory contains device nodes, a type of pseudo-file used by most har
 
 </center>
 
+### The /var Directory
 
+The /var directory contains files that are expected to change in size and content as the system is running (var stands for variable), such as the entries in the following directories:
+
+            System log files: /var/log
+            Packages and database files: /var/lib
+            Print queues: /var/spool
+            Temporary files: /var/tmp.
+
+<center>
+
+![The /var Directory](var.png)
+
+</center>
+
+The /var directory may be put on its own filesystem so that growth of the files can be accommodated and any exploding file sizes do not fatally affect the system. Network services directories such as /var/ftp (the FTP service) and /var/www (the HTTP web service) are also found under /var.
+
+<center>
+
+![The /var Directory](var2.png)
+
+</center>
+
+### The /etc Directory
+
+The /etc directory is the home for system configuration files. It contains no binary programs, although there are some executable scripts. For example, /etc/resolv.conf tells the system where to go on the network to obtain host name to IP address mappings (DNS). Files like passwd, shadow and group for managing user accounts are found in the /etc directory. While some distributions have historically had their own extensive infrastructure under /etc (for example, Red Hat and SUSE have used /etc/sysconfig), with the advent of systemd there is much more uniformity among distributions today.
+
+Note that /etc is for system-wide configuration files and only the superuser can modify files there. User-specific configuration files are always found under their home directory.
+
+<center>
+
+![The /etc Directory](etc.png)
+
+</center>
+
+### The /boot Directory
+
+The /boot directory contains the few essential files needed to boot the system. For every alternative kernel installed on the system there are four files:
+
+1. vmlinuz
+            The compressed Linux kernel, required for booting.
+2. initramfs
+            The initial ram filesystem, required for booting, sometimes called initrd, not initramfs.
+3. config
+            The kernel configuration file, only used for debugging and bookkeeping.
+4. System.map
+            Kernel symbol table, only used for debugging.
+
+Each of these files has a kernel version appended to its name.
+
+The Grand Unified Bootloader (GRUB) files such as /boot/grub/grub.conf or /boot/grub2/grub2.cfg are also found under the /boot directory.
+
+<center>
+
+![The /boot Directory](boot.png)
+
+</center>
+
+The screenshot shows an example listing of the /boot directory, taken from a RHEL system that has multiple installed kernels, including both distribution-supplied and custom-compiled ones. Names will vary and things will tend to look somewhat different on a different distribution.
