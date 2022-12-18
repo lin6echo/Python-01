@@ -2720,3 +2720,152 @@ To apply a patch, you can just do either of the two methods below:
 `$ patch originalfile patchfile`
 
 The first usage is more common, as it is often used to apply changes to an entire directory tree, rather than just one file, as in the second example. To understand the use of the -p1 option and many others, see the man page for patch.
+
+### Using the file Utility
+
+In Linux, a file's extension often does not categorize it the way it might in other operating systems. One cannot assume that a file named file.txt is a text file and not an executable program. In Linux, a filename is generally more meaningful to the user of the system than the system itself. In fact, most applications directly examine a file's contents to see what kind of object it is rather than relying on an extension. This is very different from the way Windows handles filenames, where a filename ending with .exe, for example, represents an executable binary file.
+
+The real nature of a file can be ascertained by using the file utility. For the file names given as arguments, it examines the contents and certain characteristics to determine whether the files are plain text, shared libraries, executable programs, scripts, or something else.
+
+<center>
+
+![Using the file Utility](utility.png)
+
+</center>
+
+### Using diff and patch
+
+Linux and other open source communities often use the patch utility to disseminate modifications and updates. Here, we will give a practical introduction to using diff and patch.
+
+It would be a good idea to read the man pages for both patch and diff to learn more about advanced options and techniques, that will help one to work more effectively with patch. In particular, the form of patches has a lot to do with whether they can be accepted in their submitted form.
+
+1. Change to the /tmp directory.
+2. Copy a text file to /tmp. For example, copy /etc/group to /tmp.
+3. dd cannot only copy directly from raw disk devices, but from regular files as well. Remember, in Linux, everything is pretty much treated as a file. dd can also perform various conversions. For example, the conv=ucase option will convert all of the characters to upper-case characters. We will use dd to copy the text file to a new file in /tmp while converting characters to upper-case, as in: student:/tmp> dd if=/tmp/group of=/tmp/GROUP conv=ucase.
+4. According to the man page for patch, the preferred options for preparing a patch with diff are -Naur when comparing two directory trees recursively. We will ignore the -a option, which means treat all files as text, since patch and diff should only be used on text files anyway. Since we are just comparing two files, we do not need to use the N or r options to diff, but we could use them anyway as it will not make a difference. Compare group and GROUP using diff, and prepare a proper patch file.
+5. Use patch to patch the original file, /tmp/group, so its contents now match those of the modified file, /tmp/GROUP. You might try with the --dry-run option first!
+6. Finally, to prove that your original file is now patched to be the same one with all upper-case characters, use diff on those two files. The files should be the same and you will not get any output from diff.
+
+or this exercise, you could use any text file, but we will use /etc/group as described.
+
+    student:/tmp> cd /tmp
+    student:/tmp> cp /etc/group /tmp
+    student:/tmp> dd if=/tmp/group of=/tmp/GROUP conv=ucase
+    1+1 records in
+    1+1 records out
+    963 bytes (963 B) copied, 0.000456456 s, 2.1 MB/s
+    student:/tmp> diff -Nur group GROUP > patchfile
+    student:/tmp> cat patchfile
+
+    --- group       2015-04-17 11:03:26.710813740 -0500
+    +++ GROUP       2015-04-17 11:15:14.602813740 -0500
+    @@ -1,68 +1,68 @@
+    -root:x:0:
+    -daemon:x:1:
+    -bin:x:2:
+    -sys:x:3:
+    ....
+    -libvirtd:x:127:student
+    -vboxsf:x:999:
+    +ROOT:X:0:
+    +DAEMON:X:1:
+    +BIN:X:2:
+    +SYS:X:3:
+    .....
+    student:/tmp> patch --dry-run group patchfile
+    checking file group
+    student:/tmp> patch  group patchfile
+    patching file group
+    Note you could have also done either of these two commands:
+    student:/tmp> patch group < patchfile
+    student:/tmp> patch < patchfile
+    student:/tmp> diff group GROUP
+    student:/tmp>
+
+### Backing Up Data
+
+There are many ways you can back up data or even your entire system. Basic ways to do so include the use of simple copying with cp and use of the more robust rsync.
+
+Both can be used to synchronize entire directory trees. However, rsync is more efficient, because it checks if the file being copied already exists. If the file exists and there is no change in size or modification time, rsync will avoid an unnecessary copy and save time. Furthermore, because rsync copies only the parts of files that have actually changed, it can be very fast.
+
+cp can only copy files to and from destinations on the local machine (unless you are copying to or from a filesystem mounted using NFS), but rsync can also be used to copy files from one machine to another. Locations are designated in the target:path form, where target can be in the form of someone@host. The someone@ part is optional and used if the remote user is different from the local user.
+
+rsync is very efficient when recursively copying one directory tree to another, because only the differences are transmitted over the network. One often synchronizes the destination directory tree with the origin, using the -r option to recursively walk down the directory tree copying all files and directories below the one listed as the source.
+
+### Using rsync
+
+sync is a very powerful utility. For example, a very useful way to back up a project directory might be to use the following command:
+
+`$ rsync -r project-X archive-machine:archives/project-X`
+
+Note that rsync can be very destructive! Accidental misuse can do a lot of harm to data and programs, by inadvertently copying changes to where they are not wanted. Take care to specify the correct options and paths. It is highly recommended that you first test your rsync command using the -dry-run option to ensure that it provides the results that you want.
+
+To use rsync at the command prompt, type rsync sourcefile destinationfile, where either file can be on the local machine or on a networked machine; The contents of sourcefile will be copied to destinationfile.
+
+A good combination of options is shown in:
+
+`$ rsync --progress -avrxH  --delete sourcedir destdir`
+
+### Compressing Data
+
+File data is often compressed to save disk space and reduce the time it takes to transmit files over networks.
+
+Linux uses a number of methods to perform this compression, including:
+
+<center>
+
+![Compressing Data](compressing.png)
+
+</center>
+
+These techniques vary in the efficiency of the compression (how much space is saved) and in how long they take to compress; generally, the more efficient techniques take longer. Decompression time does not vary as much across different methods.
+
+In addition, the tar utility is often used to group files in an archive and then compress the whole archive at once.
+
+### Compressing Data Using gzip
+
+gzip is the most often used Linux compression utility. It compresses very well and is very fast. The following table provides some usage examples:
+
+<center>
+
+![Compressing Data Using gzip](gzip.png)
+
+</center>
+
+### Compressing Data Using bzip2
+
+bzip2 has a syntax that is similar to gzip but it uses a different compression algorithm and produces significantly smaller files, at the price of taking a longer time to do its work. Thus, it is more likely to be used to compress larger files.
+
+Examples of common usage are also similar to gzip:
+
+<center>
+
+![Compressing Data Using bzip2](bzip2.png)
+
+</center>
+
+NOTE: bzip2 has lately become deprecated due to lack of maintenance and the superior compression ratios of xz which is actively maintained.
+
+### Compressing Data Using xz
+
+xz is the most space efficient compression utility used in Linux and is used to store archives of the Linux kernel. Once again, it trades a slower compression speed for an even higher compression ratio.
+
+Some usage examples:
+
+<center>
+
+![Compressing Data Using xz](xz.png)
+
+</center>
+
+Compressed files are stored with a .xz extension.
+
+### Handling Files Using zip
+
+ The zip program is not often used to compress files in Linux, but is often required to examine and decompress archives from other operating systems. It is only used in Linux when you get a zipped file from a Windows user. It is a legacy program.
+
+ <center>
+
+![Handling Files Using zip](zip.png)
+
+</center>
