@@ -2869,3 +2869,142 @@ Compressed files are stored with a .xz extension.
 ![Handling Files Using zip](zip.png)
 
 </center>
+
+### Archiving and Compressing Data Using tar
+
+Historically, tar stood for "tape archive" and was used to archive files to a magnetic tape. It allows you to create or extract files from an archive file, often called a tarball. At the same time, you can optionally compress while creating the archive, and decompress while extracting its contents.
+
+Here are some examples of the use of tar:
+
+<center>
+
+![Archiving and Compressing Data Using tar](tar.png)
+
+</center>
+
+You can separate out the archiving and compression stages, as in:
+
+`$ tar cvf mydir.tar mydir ; gzip mydir.tar`
+`$ gunzip mydir.tar.gz ; tar xvf mydir.tar`
+
+but this is slower and wastes space by creating an unneeded intermediary .tar file.
+
+### Relative Compression Times and Sizes
+
+To demonstrate the relative efficiency of gzip, bzip2, and xz, the following screenshot shows the results of compressing a purely text file directory tree (the include directory from the kernel source) using the three methods.
+
+<center>
+
+![Relative Compression Times and Sizes](relative.png)
+
+</center>
+
+This shows that as compression factors go up, CPU time does as well (i.e. producing smaller archives takes longer).
+
+### Disk-to-Disk Copying (dd)
+
+The dd program is very useful for making copies of raw disk space. For example, to back up your Master Boot Record (MBR) (the first 512-byte sector on the disk that contains a table describing the partitions on that disk), you might type:
+
+`dd if=/dev/sda of=sda.mbr bs=512 count=1`
+
+WARNING!
+
+Typing:
+
+`dd if=/dev/sda of=/dev/sdb`
+
+to make a copy of one disk onto another, will delete everything that previously existed on the second disk.
+
+An exact copy of the first disk device is created on the second disk device.
+
+##### Do not experiment with this command as written above, as it can erase a hard disk!
+
+Exactly what the name dd stands for is an often-argued item. The words data definition is the most popular theory and has roots in early IBM history. Often, people joke that it means disk destroyer and other variants such as delete data!
+
+### Archiving (Backing Up) the Home Directory
+
+Archiving (or backing up) your files from time to time is essential good hygiene. You might type a command and thereby unintentionally clobber files you need and did not mean to alter.
+
+Furthermore, while your hardware may be deemed fairly reliable, all devices do fail in some fashion eventually (even if it is just an unexpected power failure). Often, this happens at the worst possible time. Periodically backing up files is a good habit to get into.
+
+It is, of course, important to do backups to external systems through a network, or onto external storage, such as an external drive or USB stick. Here, we will be making a backup archive on the same system, which is very useful, but won’t help if the drive fails catastrophically, or your computer is stolen or the building gets zapped by an asteroid or a fire.
+
+First, using tar, backup all files and subdirectories under your home directory. Place the resulting tarball file in the /tmp directory, giving it the name backup.tar.
+
+Second, accomplish the same task with gzip compression using the -z option to tar, creating /tmp/backup.tar.gz.
+
+Compare the size of the two files (with ls -l).
+
+For additional experience, make backups using the -j option using the bzip2 compression, and -J option for using the xz compression.
+
+To construct a tarball archive of your home directory, you can do:
+
+student:/tmp> tar -cvf /tmp/backup.tar ~
+
+or equivalently
+
+student:/tmp> tar -cvf /tmp/backup.tar /home/student
+
+Note you can have omitted the - in the options with no change. In the following, we will not bother using the -v option for verbose. To create archives with all three compression utilities, run:
+
+student:/tmp> tar zcf /tmp/backup.tar.gz ~
+student:/tmp> tar jcf /tmp/backup.tar.bz2 ~
+student:/tmp> tar Jcf /tmp/backup.tar.xz ~
+
+Comparing the sizes (first using the -h option to ls to make it human-readable):
+
+student@ubuntu:~student:/tmp> ls -lh /tmp/backup*
+
+-rw-rw-r-- 1 student student 8.3M Apr 17 10:14 /tmp/backup2.tar.gz
+-rw-rw-r-- 1 student student  12M Apr 17 10:13 /tmp/backup.tar
+-rw-rw-r-- 1 student student 8.4M Apr 17 10:15 /tmp/backup.tar.bz2
+-rw-rw-r-- 1 student student 8.3M Apr 17 10:14 /tmp/backup.tar.gz
+-rw-rw-r-- 1 student student 8.2M Apr 17 10:15 /tmp/backup.tar.xz     
+
+and then without it:
+
+student@ubuntu:~student:/tmp> ls -l /tmp/backup*
+
+-rw-rw-r-- 1 student student  8686942 Apr 17 10:14 /tmp/backup2.tar.gz
+-rw-rw-r-- 1 student student 12226560 Apr 17 10:13 /tmp/backup.tar
+-rw-rw-r-- 1 student student  8720491 Apr 17 10:15 /tmp/backup.tar.bz2
+-rw-rw-r-- 1 student student  8686929 Apr 17 10:14 /tmp/backup.tar.gz
+-rw-rw-r-- 1 student student  8551064 Apr 17 10:15 /tmp/backup.tar.xz
+
+Note in this case, there is not much difference in the different archiving methods, but this particular directory was a bad choice because it already contained a lot of compressed files. A somewhat better example involving more text files:
+
+student:/tmp> tar cf  /tmp/doc.tar     /usr/share/doc
+student:/tmp> tar zcf /tmp/doc.tar.gz  /usr/share/doc
+student:/tmp> tar jcf /tmp/doc.tar.bz2 /usr/share/doc
+student:/tmp> tar Jcf /tmp/doc.tar.xz  /usr/share/doc
+student:/tmp> ls -lh /tmp/doc.tar*
+
+-rw-rw-r-- 1 student student 85M Apr 17 10:34 /tmp/doc.tar
+-rw-rw-r-- 1 student student 31M Apr 17 10:35 /tmp/doc.tar.bz2
+-rw-rw-r-- 1 student student 34M Apr 17 10:34 /tmp/doc.tar.gz
+-rw-rw-r-- 1 student student 28M Apr 17 10:36 /tmp/doc.tar.xz
+
+which shows xz did best, followed by bz2 and then gz. You may have noticed, however, the inverse relationship between the size reduction of the compression and how long it took!
+
+### Chapter Summary
+
+You have completed Chapter 10. Let’s summarize the key concepts covered:
+
+- The filesystem tree starts at what is often called the root directory (or trunk, or /).
+- The  Filesystem Hierarchy Standard (FHS) provides Linux developers and system administrators a standard directory structure for the filesystem.
+- Partitions help to segregate files according to usage, ownership, and type.
+- Filesystems can be mounted anywhere on the main filesystem tree at a mount point. Automatic filesystem mounting can be set up by editing /etc/fstab.
+- NFS (Network File System) is a useful method for sharing files and data through the network systems.
+- Filesystems like /proc are called pseudo filesystems because they exist only in memory.
+- /root (slash-root) is the home directory for the root user.
+- /var may be put in its own filesystem so that growth can be contained and not fatally affect the system.
+- /boot contains the basic files needed to boot the system.
+- patch is a very useful tool in Linux. Many modifications to source code and configuration files are distributed with patch files, as they contain the deltas or changes to go from an old version of a file to the new version of a file.
+- File extensions in Linux do not necessarily mean that a file is of a certain type.
+- cp is used to copy files on the local machine, while rsync can also be used to copy files from one machine to another, as well as synchronize contents.
+- gzip, bzip2, xz and zip are used to compress files.
+- tar allows you to create or extract files from an archive file, often called a tarball. You can optionally compress while creating the archive, and decompress while extracting its contents.
+- dd can be used to make large exact copies, even of entire disk partitions, efficiently.
+
+
+
