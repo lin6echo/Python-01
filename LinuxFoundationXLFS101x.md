@@ -3132,3 +3132,41 @@ vi provides three modes, as described in the table below. It is vital to not los
 ![Modes in vi](vi.png)
 
 </center>
+
+### Working with Files in vi
+
+The table describes the most important commands used to start, exit, read, and write files in vi. The ENTER key needs to be pressed after all of these commands.
+
+<center>
+
+![Working with Files in vi](viwithfiles.png)
+
+</center>
+
+### Changing Cursor Positions in vi
+
+The table describes the most important keystrokes used when changing cursor position in vi. Line mode commands (those following colon : ) require the ENTER key to be pressed after the command is typed.
+
+<center>
+
+![Changing Cursor Positions in vi](changing.png)
+
+</center>
+
+### Searching for Text in vi
+
+The table describes the most important commands used when searching for text in vi. The ENTER key should be pressed after typing the search pattern.
+
+<center>
+
+![Searching for Text in vi](searching.png)
+
+</center>
+
+The table describes the most important keystrokes used when searching for text in vi.
+
+<center>
+
+![Searching for Text in vi](keystrokes.png)
+
+</center>
