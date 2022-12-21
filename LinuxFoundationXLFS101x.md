@@ -3170,3 +3170,42 @@ The table describes the most important keystrokes used when searching for text i
 ![Searching for Text in vi](keystrokes.png)
 
 </center>
+
+### Working with Text in vi
+
+The table describes the most important keystrokes used when changing, adding, and deleting text in vi.
+
+<center>
+
+![Working with Text in vi](workingvi.png)
+
+</center>
+
+### Commands for vi
+
+<center>
+
+![Commands for vi](commandsvi1.png)
+
+</center>
+
+<center>
+
+![Commands for vi](commandsvi2.png)
+
+</center>
+
+<center>
+
+![Commands for vi](commandsvi3.png)
+
+</center>
+
+<center>
+
+![Commands for vi](commandsvi4.png)
+
+</center>
+
+
+
